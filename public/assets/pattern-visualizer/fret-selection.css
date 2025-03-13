@@ -1,0 +1,31 @@
+/* mobile first min-width sets base and content is adapted to computers. */
+@media (min-width: 100px) {
+    #selector-instructions{
+        width: 100%;
+    }
+    .fret-selection-container {
+        width: 100%;
+        overflow: auto;
+    }
+
+    #fretboard-number-span{
+        font-size: 26px;
+        color: var(--accent-color);
+    }
+
+    .fretboard-for-patterns, .virtual-fretboard-selector {
+        min-width: 420px;
+        padding-right: 40px;
+    }
+    .inactive-fretboard{
+        display: none;
+    }
+
+
+
+    .fret-selection-container .fret-position:hover{
+        background-color: initial;
+        cursor: initial;
+    }
+
+}

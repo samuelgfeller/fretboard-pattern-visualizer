@@ -1,0 +1,42 @@
+/*mobile first min-width sets base and content is adapted to computers.*/
+@media (min-width: 100px) {
+    #settings-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4rem;
+        padding: 1.5rem 2rem 2rem;
+        /*border-radius: 40px;*/
+        /*box-shadow: 0 2px 10px rgba(255, 255, 255, .1);*/
+    }
+
+    #settings-container .form-input-div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0;
+    }
+
+    #settings-container .form-input-div input {
+        width: 4rem;
+    }
+
+    #settings-container .form-input-div label {
+        padding: 0;
+    }
+}
+
+/*portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones*/
+@media (min-width: 641px) {
+
+}
+
+/*At this breakpoint it looks good to have two columns*/
+@media (min-width: 755px) {
+
+}
+
+/*tablet, landscape iPad, lo-res laptops ands desktops*/
+@media (min-width: 961px) {
+}
