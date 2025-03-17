@@ -6,4 +6,4 @@ const chordTypeSelect = document.getElementById('chord-type-select');
 
 const patternVisualizer = new PatternVisualizer();
 
-patternVisualizer.displayPattern();
+patternVisualizer.displayPattern(rootNoteInput.value !== '' ? rootNoteInput.value : 'C', noteNumInput.value !== '' ? noteNumInput.value : 1, chordTypeSelect.value !== '' ? chordTypeSelect.value : 'major');

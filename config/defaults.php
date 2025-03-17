@@ -40,7 +40,7 @@ $settings['error'] = [
 ];
 
 $settings['public'] = [
-    'app_name' => 'Slim Starter',
+    'app_name' => 'Fretboard Pattern Visualizer',
     'main_contact_email' => 'contact@samuel-gfeller.ch',
 ];
 

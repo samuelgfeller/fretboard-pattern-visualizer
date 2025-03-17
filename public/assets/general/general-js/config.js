@@ -1,5 +1,7 @@
 export let basePath = document.getElementsByTagName('base')[0].getAttribute('href');
 
+// Object with string names as keys and arrays of notes as values
+// where the note index is the fret number
 export const availableNotesOnStrings = {
     // String name: [possible keys for string]
     'E': ['E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B', 'C', 'C♯', 'D', 'D♯'],

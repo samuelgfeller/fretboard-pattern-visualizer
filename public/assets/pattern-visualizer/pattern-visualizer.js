@@ -1,4 +1,3 @@
-
 import {PositionGenerator} from "../position-generator/position-generator.js?v=0.0.0";
 import {availableNotesOnStrings} from "../general/general-js/config.js?v=0.0.0";
 
@@ -8,26 +7,28 @@ export class PatternVisualizer {
         this.positionsGenerator = new PositionGenerator();
     }
 
-    displayPattern() {
+    displayPattern(rootNoteName, numberInKey, chordType) {
+        let chordNotes = this.positionsGenerator.generateDiatonicScale(rootNoteName);
 
+        const notesOnStrings = this.positionsGenerator.getChordNotesOnStrings(chordNotes)
+        console.log(notesOnStrings);
         // Must be before the slider is added so that the slider init can highlight the selected are on load
-        this.addFretboard();
+        this.addFretboard(notesOnStrings);
 
     }
-    static getSavedFretRange(){
+
+    static getSavedFretRange() {
         const fretboardNr = document.querySelector(`.fretboard-for-patterns:not(.inactive-fretboard)`).dataset.fretboardNr;
         return localStorage.getItem(`note-in-key-fret-range-${fretboardNr}`);
     }
 
-    addFretboard() {
+    addFretboard(notesOnStrings) {
         document.querySelector('#settings-container').insertAdjacentHTML('afterend', `
             <div class="fretboard-container">
                 <div id="fretboard-for-pattern"></div>
             </div>
         `);
 
-        const notesOnStrings = this.positionsGenerator.getAvailableNotesOnStringsInDiatonicScale('G', availableNotesOnStrings)
-        console.log(notesOnStrings);
         const notePositionsOnFretboard = this.addVirtualFretboardHtml(notesOnStrings);
         // Add patterns from the first fretboard to the local storage
         localStorage.setItem('fret-pattern-positions', JSON.stringify(notePositionsOnFretboard));

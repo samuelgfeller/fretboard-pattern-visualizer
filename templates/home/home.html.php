@@ -31,8 +31,8 @@ $this->addAttribute('jsModule', [
         <input type="text" id="root-note-input" placeholder="C#" class="form-input">
     </div>
     <div class="form-input-div">
-        <label for="root-note-input">Num</label>
-        <input type="number" id="note-num-input" placeholder="1" class="form-input">
+        <label for="note-num-input">Num</label>
+        <input type="number" id="note-num-input" placeholder="1" min="1" class="form-input">
     </div>
 
     <!--    Maj min dim maj7 etc select -->
