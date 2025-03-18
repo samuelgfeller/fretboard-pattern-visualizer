@@ -17,7 +17,7 @@ $this->addAttribute('css', [
 
 $this->addAttribute('jsModule', [
     'assets/home/app.js',
-        ]);
+]);
 
 
 ?>
@@ -28,12 +28,16 @@ $this->addAttribute('jsModule', [
 <div id="settings-container">
     <div class="form-input-div">
         <label for="root-note-input">Root note</label>
-        <input type="text" id="root-note-input" placeholder="C#" class="form-input">
+        <input
+                pattern="[A-G](♯|♭|#|b)?"
+                required
+                title="Enter a valid note (A-G with optional sharp/flat: ♯, ♭, #, b)"
+                type="text" id="root-note-input" placeholder="C#" class="form-input">
     </div>
-    <div class="form-input-div">
-        <label for="note-num-input">Num</label>
-        <input type="number" id="note-num-input" placeholder="1" min="1" class="form-input">
-    </div>
+    <!--    <div class="form-input-div">
+            <label for="note-num-input">Num</label>
+            <input type="number" id="note-num-input" placeholder="1" min="1" class="form-input">
+        </div>-->
 
     <!--    Maj min dim maj7 etc select -->
     <div class="form-input-div">
@@ -43,12 +47,8 @@ $this->addAttribute('jsModule', [
             <option value="min">Minor</option>
             <option value="dim">Diminished</option>
             <option value="aug">Augmented</option>
-            <option value="maj">Major</option>
-            <option value="min">Minor</option>
-            <option value="maj7">Major 7</option>
             <option value="min7">Minor 7</option>
             <option value="dom7">Dominant 7</option>
         </select>
     </div>
-
 </div>

@@ -106,12 +106,10 @@
         z-index: 2;
     }
 
-    .diatonic-note-number, .note-name-span {
+    .highlighted-note-number, .string-name span {
         width: 32px;
         height: 32px;
-        border-radius: 50%;
         background-color: var(--background-color);
-        border: 1px solid var(--border-accent-2-color);
         /*color: #ff7a1c;*/
         color: var(--primary-text-color);
         font-weight: bold;
@@ -127,10 +125,9 @@
         line-height: normal;
     }
 
-    .note-name-span {
-        border: none;
-        /*background-color: rgba(var(--r), var(--g), var(--b), 0.8);*/
-        background-color: var(--background-color);
+    .highlighted-note-number {
+        border-radius: 50%;
+        border: 1px solid var(--border-accent-2-color);
     }
 
     .diatonic-major {
