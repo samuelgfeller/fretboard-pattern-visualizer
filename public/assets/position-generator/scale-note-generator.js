@@ -3,15 +3,21 @@ export class ScaleNoteGenerator {
         // Define only the major scale pattern
         this.majorPattern = [2, 2, 1, 2, 2, 2, 1]; // W-W-H-W-W-W-H
 
+
         // Define scale types as alterations to the major scale
         this.scaleDefinitions = {
-            'maj': {pattern: this.majorPattern, alterations: []},
-            'min': {pattern: this.majorPattern, alterations: [3, 6, 7]}, // Flatten 3rd, 6th, 7th
-            'dim': {pattern: this.majorPattern, alterations: [3, 5, 6, 7]}, // Flatten 3rd, 5th, 6th, 7th
-            'aug': {pattern: this.majorPattern, alterations: [], sharpened: [5]}, // Sharpen 5th
-            'min7': {pattern: this.majorPattern, alterations: [3, 6, 7]}, // Same as minor
-            'dom7': {pattern: this.majorPattern, alterations: [7]} // Flatten 7th only
+            'all': {pattern: [1,1,1,1,1,1,1,1,1,1,1,1], alterations: []},
+            'major': {pattern: this.majorPattern, alterations: []},
+            'minor': {pattern: this.majorPattern, alterations: [3, 6, 7]},
+            'dorian': {pattern: this.majorPattern, alterations: [3, 7]},
+            'phrygian': {pattern: this.majorPattern, alterations: [2, 3, 6, 7]},
+            'lydian': {pattern: this.majorPattern, alterations: [], sharpened: [4]},
+            'mixolydian': {pattern: this.majorPattern, alterations: [7]},
+            'locrian': {pattern: this.majorPattern, alterations: [2, 3, 5, 6, 7]},
+
         };
+
+
     }
 
     /**
@@ -36,7 +42,7 @@ export class ScaleNoteGenerator {
         let majorScaleNotes = this.generateMajorScale(normalizedRoot, chromaticScale);
 
         // Get scale definition
-        const definition = this.scaleDefinitions[scaleType] || this.scaleDefinitions['maj'];
+        const definition = this.scaleDefinitions[scaleType] || this.scaleDefinitions['major'];
 
         // Build scale notes with proper degrees
         let scaleNotes = [];

@@ -5,18 +5,12 @@ import {ScaleNoteGenerator} from "../position-generator/scale-note-generator.js?
 export class PatternVisualizer {
 
     constructor() {
-        this.positionsGenerator = new PositionGenerator();
-        this.chordNoteGenerator = new ScaleNoteGenerator();
+
     }
 
-    displayPattern(rootNoteName, scaleType) {
-        console.log(`rootNoteName: ${rootNoteName}, scaleType: ${scaleType}`);
-        let scaleNotes = this.chordNoteGenerator.getScaleNotes(rootNoteName, scaleType);
-        console.log(`scaleNotes:`, scaleNotes);
-        const notesOnStrings = this.positionsGenerator.getChordNotesOnStrings(scaleNotes);
-        console.log(notesOnStrings);
+    displayPattern(notesOnStrings) {
         // Must be before the slider is added so that the slider init can highlight the selected are on load
-        this.addFretboard(notesOnStrings);
+        this.showFretboard(notesOnStrings);
 
     }
 
@@ -25,26 +19,25 @@ export class PatternVisualizer {
         return localStorage.getItem(`note-in-key-fret-range-${fretboardNr}`);
     }
 
-    addFretboard(notesOnStrings) {
+    showFretboard(notesOnStrings) {
         document.getElementById('fretboard-container')?.remove();
-        document.querySelector('#settings-container').insertAdjacentHTML('afterend', `
+
+        document.querySelector('#settings-form').insertAdjacentHTML('afterend', `
             <div id="fretboard-container">
                 <div id="fretboard-for-pattern"></div>
             </div>
         `);
 
-        const notePositionsOnFretboard = this.addVirtualFretboardHtml(notesOnStrings);
-        // Add patterns from the first fretboard to the local storage
-        localStorage.setItem('fret-pattern-positions', JSON.stringify(notePositionsOnFretboard));
+        this.addVirtualFretboardHtml(notesOnStrings);
     }
 
-    addVirtualFretboardHtml(diatonicNotesOnStrings) {
+    addVirtualFretboardHtml(notesOnStrings) {
         const fretboard = document.querySelector(`#fretboard-for-pattern`);
 
         // Create a deep copy of availableNotesOnStrings to prevent actually modifying the original object
         const availableNotesOnStringsCopy = JSON.parse(JSON.stringify(availableNotesOnStrings));
 
-        // Store the total number of fets on the string to place indicator helpers and scrollIntoView on mobile
+        // Store the total number of frets on the string to place indicator helpers and scrollIntoView on mobile
         let totalFrets = availableNotesOnStringsCopy[Object.keys(availableNotesOnStringsCopy)[0]].length - 1;
         fretboard.dataset.totalFrets = totalFrets.toString();
 
@@ -67,7 +60,7 @@ export class PatternVisualizer {
             // Set the text content to the string name (overwritten if diatonic note number)
             stringNameSpan.textContent = stringName;
             // Add note number of open string name
-            let noteObject = diatonicNotesOnStrings[stringName].find(
+            let noteObject = notesOnStrings[stringName].find(
                 noteObject => noteObject.noteName === stringName || noteObject.noteName === 'E' && stringName === 'E2'
             );
             if (noteObject) {
@@ -92,7 +85,7 @@ export class PatternVisualizer {
                 string.appendChild(fretPosition);
 
                 // Display note number in highlighted-note-number span if the current note name is in the diatonic scale
-                let noteObject = diatonicNotesOnStrings[stringName].find(noteObject => noteObject.noteName === notes[index]);
+                let noteObject = notesOnStrings[stringName].find(noteObject => noteObject.noteName === notes[index]);
                 if (noteObject) {
                     let diatonicNoteNumber = document.createElement('span');
                     this.addDiatonicNoteNumberColor(diatonicNoteNumber, noteObject.number);
