@@ -111,7 +111,6 @@
         height: 32px;
         background-color: var(--background-color);
         /*color: #ff7a1c;*/
-        color: var(--primary-text-color);
         font-weight: bold;
         bottom: 50%;
         position: absolute;
@@ -123,6 +122,11 @@
         align-items: center;
         justify-content: center;
         line-height: normal;
+        color: #12c712;
+    }
+
+    .string-name span {
+        color: var(--primary-text-color);
     }
 
     .highlighted-note-number {
@@ -130,18 +134,27 @@
         border: 1px solid var(--border-accent-2-color);
     }
 
-    .diatonic-major {
-        color: #ee2929;
+    .root {
+        border: 2px solid mediumpurple;
     }
 
-    .diatonic-minor {
-        color: #2e8bff;
+    .major-span {
     }
 
-    .diatonic-diminished {
+    /* Default color for other is green */
+    .highlighted-note-number {
         color: #12c712;
     }
 
+    .highlighted-note-number.major,
+    .highlighted-note-number.maj {
+        color: #ee2929;
+    }
+
+    .highlighted-note-number.minor,
+    .highlighted-note-number.min {
+        color: #2e8bff;
+    }
 
 }
 

@@ -8,18 +8,7 @@ export class PatternVisualizer {
 
     }
 
-    displayPattern(notesOnStrings) {
-        // Must be before the slider is added so that the slider init can highlight the selected are on load
-        this.showFretboard(notesOnStrings);
-
-    }
-
-    static getSavedFretRange() {
-        const fretboardNr = document.querySelector(`.fretboard-for-patterns:not(.inactive-fretboard)`).dataset.fretboardNr;
-        return localStorage.getItem(`note-in-key-fret-range-${fretboardNr}`);
-    }
-
-    showFretboard(notesOnStrings) {
+    displayPattern(notesOnStrings, scaleOrChordType) {
         document.getElementById('fretboard-container')?.remove();
 
         document.querySelector('#settings-form').insertAdjacentHTML('afterend', `
@@ -28,12 +17,20 @@ export class PatternVisualizer {
             </div>
         `);
 
-        this.addVirtualFretboardHtml(notesOnStrings);
+        this.addVirtualFretboardHtml(notesOnStrings, scaleOrChordType);
     }
 
-    addVirtualFretboardHtml(notesOnStrings) {
-        const fretboard = document.querySelector(`#fretboard-for-pattern`);
+    static getSavedFretRange() {
+        const fretboardNr = document.querySelector(`.fretboard-for-patterns:not(.inactive-fretboard)`).dataset.fretboardNr;
+        return localStorage.getItem(`note-in-key-fret-range-${fretboardNr}`);
+    }
 
+    addVirtualFretboardHtml(notesOnStrings, scaleOrChordType) {
+        const fretboard = document.querySelector(`#fretboard-for-pattern`);
+        // Add chord type as a class for styling
+        if (scaleOrChordType) {
+            fretboard.classList.add(`chord-type-${scaleOrChordType.toLowerCase().replace(/\s+/g, '-')}`);
+        }
         // Create a deep copy of availableNotesOnStrings to prevent actually modifying the original object
         const availableNotesOnStringsCopy = JSON.parse(JSON.stringify(availableNotesOnStrings));
 
@@ -57,14 +54,16 @@ export class PatternVisualizer {
             // Set the noteName data attribute to the first note of the string
             stringNameSpan.dataset.noteName = stringName;
 
-            // Set the text content to the string name (overwritten if diatonic note number)
+            // Set the text content to the string name (overwritten if note number)
             stringNameSpan.textContent = stringName;
             // Add note number of open string name
             let noteObject = notesOnStrings[stringName].find(
                 noteObject => noteObject.noteName === stringName || noteObject.noteName === 'E' && stringName === 'E2'
             );
             if (noteObject) {
-                this.addDiatonicNoteNumberColor(stringNameSpan, noteObject.number);
+                this.addNoteColor(stringNameSpan, noteObject);
+                // Replace the string name with the note number
+                stringNameSpan.textContent = noteObject.number;
             }
             stringNameDiv.dataset.fretPosition = '0';
             // Append the string name div to the string div
@@ -88,7 +87,8 @@ export class PatternVisualizer {
                 let noteObject = notesOnStrings[stringName].find(noteObject => noteObject.noteName === notes[index]);
                 if (noteObject) {
                     let diatonicNoteNumber = document.createElement('span');
-                    this.addDiatonicNoteNumberColor(diatonicNoteNumber, noteObject.number);
+                    this.addNoteColor(diatonicNoteNumber, noteObject);
+                    diatonicNoteNumber.textContent = noteObject.number;
                     fretPosition.appendChild(diatonicNoteNumber);
                     if (noteObject.number === 1) {
                         // There can only be one key note on a string
@@ -106,16 +106,17 @@ export class PatternVisualizer {
         return noteOnePositions;
     }
 
-    addDiatonicNoteNumberColor(element, noteNumber) {
+    addNoteColor(element, noteObject) {
         element.classList.add('highlighted-note-number');
-        if ([1, 4, 5].includes(noteNumber)) {
-            element.classList.add('diatonic-major');
-        } else if ([2, 3, 6].includes(noteNumber)) {
-            element.classList.add('diatonic-minor');
-        } else if (noteNumber === 7) {
-            element.classList.add('diatonic-diminished');
+
+        // First check if it's a root note
+        if (noteObject.isRoot) {
+            element.classList.add('root');
         }
-        element.textContent = noteNumber;
+
+        if (noteObject.tonality){
+            element.classList.add(`${noteObject.tonality}`)
+        }
     }
 
     static saveFretRangeInLocalStorage(lowerLimit, upperLimit) {

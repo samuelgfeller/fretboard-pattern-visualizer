@@ -6,7 +6,7 @@ export class ScaleNoteGenerator {
 
         // Define scale types as alterations to the major scale
         this.scaleDefinitions = {
-            'all': {pattern: [1,1,1,1,1,1,1,1,1,1,1,1], alterations: []},
+            'all': {pattern: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], alterations: []},
             'major': {pattern: this.majorPattern, alterations: []},
             'minor': {pattern: this.majorPattern, alterations: [3, 6, 7]},
             'dorian': {pattern: this.majorPattern, alterations: [3, 7]},
@@ -56,6 +56,7 @@ export class ScaleNoteGenerator {
                 // Flatten the note
                 noteName = this.flattenNote(noteName, chromaticScale);
                 degreeSymbol = "♭" + degreeSymbol;
+
             } else if (definition.sharpened && definition.sharpened.includes(degreeNumber)) {
                 // Sharpen the note
                 noteName = this.sharpenNote(noteName, chromaticScale);
