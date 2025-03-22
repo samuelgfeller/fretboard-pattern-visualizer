@@ -142,17 +142,17 @@
     }
 
     /* Default color for other is green */
-    .highlighted-note-number {
+    span.highlighted-note-number {
         color: #12c712;
     }
 
-    .highlighted-note-number.major,
-    .highlighted-note-number.maj {
+    span.highlighted-note-number.major,
+    span.highlighted-note-number.maj {
         color: #ee2929;
     }
 
-    .highlighted-note-number.minor,
-    .highlighted-note-number.min {
+    span.highlighted-note-number.minor,
+    span.highlighted-note-number.min {
         color: #2e8bff;
     }
 

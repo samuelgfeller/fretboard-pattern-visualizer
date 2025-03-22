@@ -1,6 +1,4 @@
-import {PositionGenerator} from "../position-generator/position-generator.js?v=0.0.0";
-import {availableNotesOnStrings} from "../general/general-js/config.js?v=0.0.0";
-import {ScaleNoteGenerator} from "../position-generator/scale-note-generator.js?v=0.0.0";
+import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.0.0";
 
 export class PatternVisualizer {
 
@@ -29,7 +27,7 @@ export class PatternVisualizer {
         const fretboard = document.querySelector(`#fretboard-for-pattern`);
         // Add chord type as a class for styling
         if (scaleOrChordType) {
-            fretboard.classList.add(`chord-type-${scaleOrChordType.toLowerCase().replace(/\s+/g, '-')}`);
+            fretboard.classList.add(`type-${scaleOrChordType.toLowerCase().replace(/\s+/g, '-')}`);
         }
         // Create a deep copy of availableNotesOnStrings to prevent actually modifying the original object
         const availableNotesOnStringsCopy = JSON.parse(JSON.stringify(availableNotesOnStrings));

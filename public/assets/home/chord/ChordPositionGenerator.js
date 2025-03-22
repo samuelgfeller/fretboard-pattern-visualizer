@@ -1,9 +1,9 @@
-import {availableNotesOnStrings} from "../general/general-js/config.js?v=0.0.0";
-import {ScaleNoteGenerator} from "./scale-note-generator.js?v=0.0.0";
+import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.0.0";
+import {SaleNoteDegreeCalculator as ScaleNoteDegreeCalculator} from "../scale/SaleNoteDegreeCalculator.js?v=0.0.0";
+import {MusicNoteUtils as NoteNameNormalizer} from "../music-util/NoteNameNormalizer.js?v=0.0.0";
 
-export class PositionGenerator {
+export class ChordPositionGenerator {
     constructor() {
-        this.scaleNoteGenerator = new ScaleNoteGenerator();
         // Define chord tones for each chord type
         this.chordTones = {
             'maj': ['1', '3', '5'],
@@ -16,7 +16,7 @@ export class PositionGenerator {
 
     getChordNotesOnStrings(keyNote, scaleType, scaleDegree, chordType) {
         // 1. Generate the major scale to use as reference for scale degrees
-        const majorScaleNotes = this.scaleNoteGenerator.getScaleNotes(keyNote, 'major');
+        const majorScaleNotes = new ScaleNoteDegreeCalculator().getScaleNotes(keyNote, 'major');
         const chromaticScale = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
 
         // 2. Extract scale degree and accidental alterations
@@ -39,7 +39,7 @@ export class PositionGenerator {
             chordRootNote = majorScaleNotes[degreeIndex % 7].noteName;
         } else {
             const baseNote = majorScaleNotes[degreeIndex % 7].noteName;
-            const baseNoteIndex = chromaticScale.indexOf(this.normalizeNoteName(baseNote));
+            const baseNoteIndex = chromaticScale.indexOf(NoteNameNormalizer.normalizeNoteName(baseNote));
             chordRootNote = chromaticScale[(baseNoteIndex + alteration + 12) % 12];
         }
 
@@ -50,7 +50,7 @@ export class PositionGenerator {
         // 5. Map chromatic positions to MAJOR scale degrees
         const majorScaleDegreeMap = new Map();
         majorScaleNotes.forEach((note, index) => {
-            const notePos = chromaticScale.indexOf(this.normalizeNoteName(note.noteName));
+            const notePos = chromaticScale.indexOf(NoteNameNormalizer.normalizeNoteName(note.noteName));
             majorScaleDegreeMap.set(notePos, index + 1); // 1-based indexing
         });
 
@@ -68,7 +68,7 @@ export class PositionGenerator {
                 );
 
                 if (isChordNote) {
-                    const normalizedNote = this.normalizeNoteName(note);
+                    const normalizedNote = NoteNameNormalizer.normalizeNoteName(note);
                     const notePosition = chromaticScale.indexOf(normalizedNote);
 
                     // Determine degree relative to major scale
@@ -135,7 +135,7 @@ export class PositionGenerator {
                         }
                     }
 
-                    const isRoot = (normalizedNote === this.normalizeNoteName(chordRootNote));
+                    const isRoot = (normalizedNote === NoteNameNormalizer.normalizeNoteName(chordRootNote));
 
                     chordNotesOnStrings[string].push({
                         noteName: note,
@@ -153,7 +153,7 @@ export class PositionGenerator {
 
     getActualChordNotes(rootNote, chordTones, chromaticScale) {
         // Get root note position in chromatic scale
-        let rootIndex = chromaticScale.indexOf(this.normalizeNoteName(rootNote));
+        let rootIndex = chromaticScale.indexOf(NoteNameNormalizer.normalizeNoteName(rootNote));
         if (rootIndex === -1) return [];
 
         // Major scale intervals in semitones from root
@@ -183,103 +183,5 @@ export class PositionGenerator {
                 degree: tone
             };
         }).filter(Boolean);
-    }
-
-    normalizeNoteName(inputNote) {
-        // Map of enharmonic equivalents to standardized notes
-        const enharmonicMap = {
-            'Cb': 'B', 'C#': 'C♯', 'Db': 'C♯', 'D#': 'D♯',
-            'Eb': 'D♯', 'E#': 'F', 'Fb': 'E', 'F#': 'F♯',
-            'Gb': 'F♯', 'G#': 'G♯', 'Ab': 'G♯', 'A#': 'A♯',
-            'Bb': 'A♯', 'B#': 'C'
-        };
-
-        // Replace fancy symbols with ASCII for lookup
-        let lookupNote = inputNote
-            .replace('♯', '#')
-            .replace('♭', 'b');
-
-        return enharmonicMap[lookupNote] || inputNote;
-    }
-
-    getScaleNotesOnStrings(rootNoteName, scaleType) {
-        const scaleNotes = this.scaleNoteGenerator.getScaleNotes(rootNoteName, scaleType);
-        const noteNames = scaleNotes.map(note => note.noteName);
-
-        // Define chord tonalities for each scale degree based on scale type
-        const chordTonalities = this.getChordTonalitiesForScale(scaleType);
-
-        let selectedNotesOnStrings = {};
-        for (let string in availableNotesOnStrings) {
-            let notesOnString = availableNotesOnStrings[string];
-            selectedNotesOnStrings[string] = [];
-
-            for (let i = 0; i < notesOnString.length; i++) {
-                const note = notesOnString[i];
-                const noteIndex = noteNames.indexOf(note);
-
-                if (noteIndex !== -1) {
-                    // Only include notes that are in the scale
-                    const degreeNumber = scaleNotes[noteIndex].number.replace(/[♯♭]/g, '');
-                    selectedNotesOnStrings[string].push({
-                        noteName: note,
-                        number: scaleNotes[noteIndex].number,
-                        fretPosition: i,
-                        isRoot: (noteIndex === 0), // First note in scale array is the root
-                        tonality: chordTonalities[degreeNumber]
-                    });
-                }
-            }
-        }
-        return selectedNotesOnStrings;
-    }
-
-    getChordTonalitiesForScale(scaleType) {
-        // Get the scale notes for a C root (for ease of calculation)
-        const scaleNotes = this.scaleNoteGenerator.getScaleNotes('C', scaleType);
-        const noteNames = scaleNotes.map(note => note.noteName);
-
-        // Function to find interval between two notes in semitones
-        const getInterval = (note1, note2) => {
-            const chromaticScale = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
-            const index1 = chromaticScale.indexOf(this.normalizeNoteName(note1));
-            const index2 = chromaticScale.indexOf(this.normalizeNoteName(note2));
-            return (index2 - index1 + 12) % 12;
-        };
-
-        // Calculate chord quality for each scale degree
-        const tonalities = {};
-
-        for (let i = 0; i < noteNames.length; i++) {
-            const rootIndex = i;
-            const thirdIndex = (i + 2) % 7;
-            const fifthIndex = (i + 4) % 7;
-
-            const rootNote = noteNames[rootIndex];
-            const thirdNote = noteNames[thirdIndex];
-            const fifthNote = noteNames[fifthIndex];
-
-            const thirdInterval = getInterval(rootNote, thirdNote);
-            const fifthInterval = getInterval(rootNote, fifthNote);
-
-            // Determine chord quality based on intervals
-            let quality;
-            if (thirdInterval === 4 && fifthInterval === 7) {
-                quality = 'maj';
-            } else if (thirdInterval === 3 && fifthInterval === 7) {
-                quality = 'min';
-            } else if (thirdInterval === 3 && fifthInterval === 6) {
-                quality = 'dim';
-            } else if (thirdInterval === 4 && fifthInterval === 8) {
-                quality = 'aug';
-            } else {
-                // Fallback for unusual chords
-                quality = 'unk';
-            }
-
-            tonalities[(i + 1).toString()] = quality;
-        }
-
-        return tonalities;
     }
 }

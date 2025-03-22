@@ -1,4 +1,4 @@
-export class ScaleNoteGenerator {
+export class SaleNoteDegreeCalculator {
     constructor() {
         // Define only the major scale pattern
         this.majorPattern = [2, 2, 1, 2, 2, 2, 1]; // W-W-H-W-W-W-H

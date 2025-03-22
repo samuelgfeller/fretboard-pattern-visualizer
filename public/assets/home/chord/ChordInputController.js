@@ -1,5 +1,7 @@
 // public/assets/home/controllers/ChordInputController.js
-import {InputController} from './InputController.js?v=0.0.0';
+
+import {InputController} from "../controller/InputController.js?v=0.0.0";
+import {ChordPositionGenerator} from "./ChordPositionGenerator.js?v=0.0.0";
 
 export class ChordInputController extends InputController {
     constructor(patternVisualizer) {
@@ -51,7 +53,7 @@ export class ChordInputController extends InputController {
     displayChordPattern() {
         // this.settingsForm.checkValidity() cannot be used as it needs to have valid name attributes
         if (this.keyInput.checkValidity() && this.scaleDegreeInput.checkValidity()) {
-            const notesOnStrings = this.positionsGenerator.getChordNotesOnStrings(
+            const notesOnStrings = new ChordPositionGenerator().getChordNotesOnStrings(
                 this.keyInput.value,
                 this.chordScaleTypeSelect.value,
                 this.scaleDegreeInput.value,

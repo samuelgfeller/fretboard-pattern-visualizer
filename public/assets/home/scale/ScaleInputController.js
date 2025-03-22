@@ -1,4 +1,5 @@
-import {InputController} from './InputController.js?v=0.0.0';
+import {ScalePositionGenerator as ScalePositionsGenerator} from "./ScalePositionGenerator.js?v=0.0.0";
+import {InputController} from "../controller/InputController.js?v=0.0.0";
 
 export class ScaleInputController extends InputController {
     constructor(patternVisualizer) {
@@ -39,10 +40,20 @@ export class ScaleInputController extends InputController {
 
     displayScalePattern() {
         if (this.rootNoteInput.checkValidity() && this.scaleTypeSelect) {
-            const notesOnStrings = this.positionsGenerator.getScaleNotesOnStrings(
+            const notesOnStrings = new ScalePositionsGenerator().getScaleNotesOnStrings(
                 this.rootNoteInput.value, this.scaleTypeSelect.value
             );
-            this.patternVisualizer.displayPattern(notesOnStrings);
+            if (this.scaleTypeSelect.value === 'phrygian') {
+                // Remove any tonality coloring as it's not correctly calculated (b7 is major, not minor)
+                for (let string in notesOnStrings) {
+                    notesOnStrings[string] = notesOnStrings[string].map(note => {
+                        note.tonality = '';
+                        return note;
+                    });
+                }
+            }
+
+            this.patternVisualizer.displayPattern(notesOnStrings, this.scaleTypeSelect.value);
         } else {
             this.settingsForm.reportValidity();
         }

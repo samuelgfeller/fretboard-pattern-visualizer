@@ -1,11 +1,9 @@
 // public/assets/home/controllers/InputController.js
-import {PositionGenerator} from "../../position-generator/position-generator.js?v=0.0.0";
 
 export class InputController {
     constructor(patternVisualizer) {
         this.patternVisualizer = patternVisualizer;
         this.isActive = false;
-        this.positionsGenerator = new PositionGenerator();
         this.settingsForm = document.getElementById('settings-form');
     }
 

@@ -11,7 +11,7 @@ $this->setLayout('layout/layout.html.php');
 // Asset handling https://samuel-gfeller.ch/docs/Template-Rendering#asset-handling
 $this->addAttribute('css', [
     'assets/general/page-component/form/form.css',
-    'assets/pattern-visualizer/virtual-fretboard.css',
+    'assets/home/pattern-visualizer/virtual-fretboard.css',
     'assets/home/home.css',
     'assets/home/mode-switch/slider.css',
 ]);

@@ -1,6 +1,6 @@
-import {PatternVisualizer} from "../pattern-visualizer/pattern-visualizer.js?v=0.0.0";
 import {ModeManager} from "./controller/ModeManager.js?v=0.0.0";
-import {PositionGenerator} from "../position-generator/position-generator.js?v=0.0.0";
+import {ChordPositionGenerator} from "./chord/ChordPositionGenerator.js?v=0.0.0";
+import {PatternVisualizer} from "./pattern-visualizer/PatternVisualizer.js?v=0.0.0";
 
 // When dom loaded
 
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const modeManager = new ModeManager(
         new PatternVisualizer(),
-        new PositionGenerator()
+        new ChordPositionGenerator()
     );
 
     modeManager.initialize();
