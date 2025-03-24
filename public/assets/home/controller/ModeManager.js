@@ -4,8 +4,6 @@ import {ScaleInputController} from "../scale/ScaleInputController.js?v=0.0.0";
 
 export class ModeManager {
     constructor(patternVisualizer, positionsGenerator) {
-        this.patternVisualizer = patternVisualizer;
-
         this.modeToggle = document.getElementById('mode-toggle');
         this.scaleContainer = document.getElementById('scale-mode-container');
         this.chordContainer = document.getElementById('chord-mode-container');

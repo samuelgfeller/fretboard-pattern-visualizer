@@ -1,6 +1,7 @@
 import {ModeManager} from "./controller/ModeManager.js?v=0.0.0";
 import {ChordPositionGenerator} from "./chord/ChordPositionGenerator.js?v=0.0.0";
 import {PatternVisualizer} from "./pattern-visualizer/PatternVisualizer.js?v=0.0.0";
+import {ColorSettingsController} from "./pattern-visualizer/ColorSettingController.js?v=0.0.0";
 
 // When dom loaded
 
@@ -11,18 +12,22 @@ document.addEventListener('DOMContentLoaded', () => {
         new ChordPositionGenerator()
     );
 
+    const colorSettings = new ColorSettingsController();
     modeManager.initialize();
 
     return;
+
+    // ! Deprecated code below
+
 
     const rootNoteInput = document.getElementById('root-note-input');
     const chordTypeSelect = document.getElementById('chord-type-select');
 
 
-// Load last valid input from local storage
+    // Load last valid input from local storage
     rootNoteInput.value = localStorage.getItem('rootNote') || '';
 
-// Display the pattern on load if the inputs are valid
+    // Display the pattern on load if the inputs are valid
     if (rootNoteInput.value !== '') {
         displayPattern();
     }

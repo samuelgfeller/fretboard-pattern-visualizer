@@ -1,3 +1,11 @@
+:root {
+    --note-color-default: #a64dff;
+    --note-color-major: #ee2929;
+    --note-color-minor: #2e8bff;
+    --note-color-augmented: #ff9d00;
+    --note-color-diminished: #12c712;
+}
+
 @media (min-width: 100px) {
     #virtual-fretboard {
         display: flex;
@@ -141,19 +149,73 @@
     .major-span {
     }
 
-    /* Default color for other is green */
+    /* Default color for others */
     span.highlighted-note-number {
-        color: #12c712;
+        color: var(--note-color-default);
     }
 
     span.highlighted-note-number.major,
     span.highlighted-note-number.maj {
-        color: #ee2929;
+        color: var(--note-color-major);
     }
 
     span.highlighted-note-number.minor,
     span.highlighted-note-number.min {
-        color: #2e8bff;
+        color: var(--note-color-minor);
+    }
+
+    span.highlighted-note-number.augmented,
+    span.highlighted-note-number.aug {
+        color: var(--note-color-augmented);
+    }
+
+    span.highlighted-note-number.diminished,
+    span.highlighted-note-number.dim {
+        color: var(--note-color-diminished);
+    }
+
+
+    .color-settings-button-container {
+        margin-top: 15px;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .color-settings-button {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background-color: var(--bg-accent-1-color, #444);
+        color: var(--text-primary-color, #fff);
+        border: 1px solid var(--border-accent-1-color, #555);
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.2s;
+    }
+
+    .color-settings-button:hover {
+        background-color: var(--bg-accent-2-color, #555);
+    }
+
+    .color-settings-button.active {
+        background-color: var(--bg-accent-2-color, #555);
+        border-color: var(--border-accent-2-color, #666);
+    }
+
+    .color-settings-button span {
+        font-size: 16px;
+    }
+
+    .color-settings {
+        display: none;
+        margin-top: 15px;
+        border: 1px solid var(--border-accent-1-color, #444);
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 4px;
+        background-color: var(--bg-primary-color, #333);
     }
 
 }
