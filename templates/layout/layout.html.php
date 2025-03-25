@@ -33,7 +33,7 @@
         'assets/general/general-css/layout.css',
         // 'assets/navbar/horizontal-navbar.css',
         'assets/general/page-component/flash-message/flash-message.css',
-        'assets/general/dark-mode/dark-mode-toggle-button.css',
+        'assets/general/dark-mode/dark-mode-toggle-switch.css',
     ];
     $layoutJs = [
         // 'assets/navbar/navbar.js',
@@ -67,9 +67,7 @@
 <!-- "In terms of semantics, <div> is the best choice" as wrapper https://css-tricks.com/best-way-implement-wrapper-css -->
 <!-- Wrapper should encompass entire body content as its height is 100vh -->
 <div id="wrapper">
-    <div id="dark-theme-toggle-container">
-        <div id="dark-theme-toggle"></div>
-    </div>
+
 
     <!--<header>
         <?php

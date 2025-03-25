@@ -23,6 +23,7 @@ $settings['deployment'] = [
     // Version string or null.
     // If JsImportCacheBuster is enabled, `null` removes all query param versions from js imports
     'version' => '0.0.0',
+    'version' => time(),
     // When true, JsImportCacheBuster is enabled and goes through all js files and changes the version number
     // from the imports. Should be disabled in env.prod.php.
     // https://samuel-gfeller.ch/docs/Template-Rendering#js-import-cache-busting

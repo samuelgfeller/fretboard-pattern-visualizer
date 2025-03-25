@@ -86,11 +86,6 @@ especially elements from the layout.html.php*/
         text-decoration: none !important;
     }
 
-    /*Headers have have a margin that is too large on mobile*/
-    main h1 {
-        margin-top: 0;
-    }
-
     footer {
         flex: none;
         /*Prevent Browser from letting flex items shrink to smaller than their content's default minimum size.*/

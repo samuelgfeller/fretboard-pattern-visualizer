@@ -1,15 +1,32 @@
 /*mobile first min-width sets base and content is adapted to computers.*/
 @media (min-width: 100px) {
+    main {
+        padding-bottom: 4rem;
+    }
+    main h1 {
+        margin-bottom: 0;
+        text-align: center;
+        margin-top: 1rem;
+    }
     #settings-form {
         display: flex;
         align-items: center;
         flex-direction: column;
         justify-content: space-between;
         padding: 1.5rem 2rem 2rem;
-        gap: 2rem;
+        gap: 3rem;
         width: 100%;
         /*border-radius: 40px;*/
         /*box-shadow: 0 2px 10px rgba(255, 255, 255, .1);*/
+    }
+
+    #pre-settings-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: min(20%, 5rem);
+        row-gap: 2rem;
     }
 
     #settings-form .form-input-div {
@@ -32,8 +49,8 @@
         display: none;
         flex-wrap: wrap;
         width: 100%;
-        gap: 10%;
-        row-gap: 2rem;
+        gap: min(10%, 4rem);
+        row-gap: 1rem;
         justify-content: center;
     }
 
@@ -44,6 +61,9 @@
     #color-settings-button-container {
         position: relative;
         width: auto;
+    }
+    #color-settings-button-container #color-settings-toggle{
+        min-width: auto;
     }
 
     #color-settings-panel {

@@ -1,7 +1,7 @@
-import {ModeManager} from "./controller/ModeManager.js?v=0.0.0";
-import {ChordPositionGenerator} from "./chord/ChordPositionGenerator.js?v=0.0.0";
-import {PatternVisualizer} from "./pattern-visualizer/PatternVisualizer.js?v=0.0.0";
-import {ColorSettingsController} from "./pattern-visualizer/ColorSettingController.js?v=0.0.0";
+import {ModeManager} from "./controller/ModeManager.js?v=1743015445";
+import {ChordPositionGenerator} from "./chord/ChordPositionGenerator.js?v=1743015445";
+import {PatternVisualizer} from "./pattern-visualizer/PatternVisualizer.js?v=1743015445";
+import {ColorSettingsController} from "./pattern-visualizer/ColorSettingController.js?v=1743015445";
 
 // When dom loaded
 

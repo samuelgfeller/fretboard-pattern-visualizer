@@ -1,6 +1,6 @@
-import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.0.0";
-import {SaleNoteDegreeCalculator as ScaleNoteDegreeCalculator} from "../scale/SaleNoteDegreeCalculator.js?v=0.0.0";
-import {MusicNoteUtils as NoteNameNormalizer} from "../music-util/NoteNameNormalizer.js?v=0.0.0";
+import {availableNotesOnStrings} from "../../general/general-js/config.js?v=1743015445";
+import {MusicNoteUtils as NoteNameNormalizer} from "../music-util/NoteNameNormalizer.js?v=1743015445";
+import {SaleNoteDegreeCalculator as ScaleNoteDegreeCalculator} from "../music-util/SaleNoteDegreeCalculator.js?v=1743015445";
 
 export class ChordPositionGenerator {
     constructor() {
@@ -16,7 +16,7 @@ export class ChordPositionGenerator {
 
     getChordNotesOnStrings(keyNote, scaleType, scaleDegree, chordType) {
         // 1. Generate the major scale to use as reference for scale degrees
-        const majorScaleNotes = new ScaleNoteDegreeCalculator().getScaleNotes(keyNote, 'major');
+        const majorScaleNotes = ScaleNoteDegreeCalculator.getScaleNotes(keyNote, 'major');
         const chromaticScale = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
 
         // 2. Extract scale degree and accidental alterations

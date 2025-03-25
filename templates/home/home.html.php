@@ -13,7 +13,7 @@ $this->addAttribute('css', [
     'assets/general/page-component/form/form.css',
     'assets/home/pattern-visualizer/virtual-fretboard.css',
     'assets/home/home.css',
-    'assets/home/mode-switch/slider.css',
+    'assets/home/mode-switch/mode-slider.css',
 ]);
 
 $this->addAttribute('jsModule', [
@@ -26,16 +26,29 @@ $this->addAttribute('jsModule', [
 <h1>Fretboard Pattern Visualizer</h1>
 
 <form id="settings-form">
-    <!-- Mode Toggle Switch -->
-    <div class="toggle-container">
-        <span class="toggle-label">Chord</span>
-        <label class="switch">
-            <input type="checkbox" id="mode-toggle">
-            <span class="slider round"></span>
+    <div id="pre-settings-container">
+        <label id="dark-mode-switch-container">
+            <input id='dark-mode-toggle-checkbox' type='checkbox'>
+            <div id='dark-mode-toggle-slot'>
+                <div id='dark-mode-sun-icon-wrapper'>
+                    <img src="assets/general/dark-mode/sun-icon.svg" alt="sun" id="dark-mode-sun-icon">
+                </div>
+                <div id="dark-mode-toggle-button"></div>
+                <div id='dark-mode-moon-icon-wrapper'>
+                    <img src="assets/general/dark-mode/moon-icon.svg" alt="sun" id="dark-mode-moon-icon">
+                </div>
+            </div>
         </label>
-        <span class="toggle-label">Scale</span>
+        <!-- Mode Toggle Switch -->
+        <div class="toggle-container">
+            <span class="toggle-label">Chord</span>
+            <label class="switch">
+                <input type="checkbox" id="mode-toggle">
+                <span class="slider round"></span>
+            </label>
+            <span class="toggle-label">Scale</span>
+        </div>
     </div>
-
     <!-- Scale Mode Container -->
     <div id="scale-mode-container" class="mode-container">
         <div class="form-input-div">
@@ -68,7 +81,7 @@ $this->addAttribute('jsModule', [
         </div>
         <div class="form-input-div">
             <label for="chord-scale-type-select">Scale type</label>
-            <select id="chord-scale-type-select" class="form-input">
+            <select id="chord-scale-type-select" class="form-input" required>
                 <!-- Ionian: No alterations (1-2-3-4-5-6-7), starts at position 1 -->
                 <option value="major">Major</option>
                 <!-- Aeolian: ♭3, ♭6, ♭7 (1-2-♭3-4-5-♭6-♭7), starts at position 6 -->
@@ -93,7 +106,7 @@ $this->addAttribute('jsModule', [
         </div>
         <div class="form-input-div">
             <label for="chord-type-select">Chord type</label>
-            <select id="chord-type-select" class="form-input">
+            <select id="chord-type-select" class="form-input" required>
                 <option value="maj">Major</option>
                 <option value="min">Minor</option>
                 <option value="dim">Diminished</option>
@@ -114,7 +127,7 @@ $this->addAttribute('jsModule', [
         <div id="color-settings-panel">
             <div class="color-picker-group">
                 <label for="color-default">Default</label>
-                <input type="color" id="color-default" value="#a64dff">
+                <input type="color" id="color-default" value="#FFFFFF">
             </div>
 
             <div class="color-picker-group">

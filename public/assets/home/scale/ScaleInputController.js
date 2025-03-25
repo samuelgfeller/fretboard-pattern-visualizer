@@ -1,5 +1,6 @@
-import {ScalePositionGenerator as ScalePositionsGenerator} from "./ScalePositionGenerator.js?v=0.0.0";
-import {InputController} from "../controller/InputController.js?v=0.0.0";
+import {ScalePositionGenerator as ScalePositionsGenerator} from "./ScalePositionGenerator.js?v=1743015445";
+import {InputController} from "../controller/InputController.js?v=1743015445";
+import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=1743015445";
 
 export class ScaleInputController extends InputController {
     constructor(patternVisualizer) {
@@ -35,11 +36,12 @@ export class ScaleInputController extends InputController {
             localStorage.setItem('scale-root-note-input', this.rootNoteInput.value);
             localStorage.setItem('scale-type-select', this.scaleTypeSelect.value);
             this.displayScalePattern();
+            ColorSettingsController.updateTextColors();
         }
     }
 
     displayScalePattern() {
-        if (this.rootNoteInput.checkValidity() && this.scaleTypeSelect) {
+        if (this.rootNoteInput.checkValidity() && this.scaleTypeSelect.checkValidity()) {
             const notesOnStrings = new ScalePositionsGenerator().getScaleNotesOnStrings(
                 this.rootNoteInput.value, this.scaleTypeSelect.value
             );

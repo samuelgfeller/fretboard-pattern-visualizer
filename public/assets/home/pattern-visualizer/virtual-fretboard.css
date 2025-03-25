@@ -1,9 +1,15 @@
 :root {
+    --string-color: #676767;
     --note-color-default: #a64dff;
     --note-color-major: #ee2929;
     --note-color-minor: #2e8bff;
     --note-color-augmented: #ff9d00;
     --note-color-diminished: #12c712;
+    --note-text-color: var(--black-white-text-color)
+}
+
+[data-theme="dark"] {
+    --string-color: #c1c1c1;
 }
 
 @media (min-width: 100px) {
@@ -33,7 +39,7 @@
         justify-content: space-between;
         position: relative;
         /*height: 30px;*/
-        border-top: 3px solid #c2c2c2;
+        border-top: 3px solid var(--string-color);
     }
 
     .string::after {
@@ -43,7 +49,7 @@
         left: 50%;
         height: 100%;
         width: 1px;
-        background-color: white;
+        background-color: var(--string-color);
         z-index: 0;
         transform: translateX(-50%);
     }
@@ -51,10 +57,8 @@
     .fret-position {
         flex-grow: 1;
         /*height: 100%;*/
-        border-top: 1px solid white;
-        border-bottom: 1px solid white;
-        /*margin: 1px 0;*/
-        cursor: pointer;
+        border-top: 1px solid var(--string-color);
+        border-bottom: 1px solid var(--string-color);
         position: relative;
         z-index: 1;
         width: 100%;
@@ -62,20 +66,7 @@
     }
 
     .fret-position:hover, .string-name:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .fret-clicked {
-        background-color: rgba(0, 255, 45, 0.15);
-    }
-
-    .string hr {
-        /*position: absolute;
-        border: none;
-        border-top: 1px solid white;
-        width: 100%;
-        height: 1px;
-        z-index: 0;*/
+        /*background-color: rgba(255, 255, 255, 0.1);*/
     }
 
     .string-name {
@@ -84,7 +75,6 @@
         font-size: 20px;
         color: #d0d0d0;
         width: 40px;
-        cursor: pointer;
         line-height: 30px;
     }
 
@@ -139,11 +129,13 @@
 
     .highlighted-note-number {
         border-radius: 50%;
-        border: 1px solid var(--border-accent-2-color);
+        /*border: 1px solid var(--border-accent-2-color);*/
     }
 
-    .root {
-        border: 2px solid mediumpurple;
+    span.highlighted-note-number.root {
+        /*Changed in ColorSettingController depending on brightness*/
+        outline: 2px dashed var(--black-white-text-color);
+
     }
 
     .major-span {
@@ -151,27 +143,32 @@
 
     /* Default color for others */
     span.highlighted-note-number {
-        color: var(--note-color-default);
+        color: var(--note-text-color);
+        background-color: var(--note-color-default);
     }
 
     span.highlighted-note-number.major,
     span.highlighted-note-number.maj {
-        color: var(--note-color-major);
+        color: var(--note-text-color);
+        background-color: var(--note-color-major);
     }
 
     span.highlighted-note-number.minor,
     span.highlighted-note-number.min {
-        color: var(--note-color-minor);
+        color: var(--note-text-color);
+        background-color: var(--note-color-minor);
     }
 
     span.highlighted-note-number.augmented,
     span.highlighted-note-number.aug {
-        color: var(--note-color-augmented);
+        color: var(--note-text-color);
+        background-color: var(--note-color-augmented);
     }
 
     span.highlighted-note-number.diminished,
     span.highlighted-note-number.dim {
-        color: var(--note-color-diminished);
+        color: var(--note-text-color);
+        background-color: var(--note-color-diminished);
     }
 
 }

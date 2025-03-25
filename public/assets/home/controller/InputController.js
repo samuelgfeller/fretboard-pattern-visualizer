@@ -1,5 +1,7 @@
 // public/assets/home/controllers/InputController.js
 
+import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=1743015445";
+
 export class InputController {
     constructor(patternVisualizer) {
         this.patternVisualizer = patternVisualizer;
@@ -11,6 +13,7 @@ export class InputController {
         this.isActive = true;
         this.attachEventListeners();
         this.loadLocalStorageValues();
+        ColorSettingsController.updateTextColors();
     }
 
     deactivate() {
@@ -20,7 +23,12 @@ export class InputController {
     }
 
     // Abstract methods to be implemented by subclasses
-    attachEventListeners() {}
-    detachEventListeners() {}
-    loadLocalStorageValues() {}
+    attachEventListeners() {
+    }
+
+    detachEventListeners() {
+    }
+
+    loadLocalStorageValues() {
+    }
 }

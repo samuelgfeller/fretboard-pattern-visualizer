@@ -1,24 +1,21 @@
 export class SaleNoteDegreeCalculator {
-    constructor() {
-        // Define only the major scale pattern
-        this.majorPattern = [2, 2, 1, 2, 2, 2, 1]; // W-W-H-W-W-W-H
+
+    // Define only the major scale pattern
+    static majorPattern = [2, 2, 1, 2, 2, 2, 1]; // W-W-H-W-W-W-H
 
 
-        // Define scale types as alterations to the major scale
-        this.scaleDefinitions = {
-            'all': {pattern: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], alterations: []},
-            'major': {pattern: this.majorPattern, alterations: []},
-            'minor': {pattern: this.majorPattern, alterations: [3, 6, 7]},
-            'dorian': {pattern: this.majorPattern, alterations: [3, 7]},
-            'phrygian': {pattern: this.majorPattern, alterations: [2, 3, 6, 7]},
-            'lydian': {pattern: this.majorPattern, alterations: [], sharpened: [4]},
-            'mixolydian': {pattern: this.majorPattern, alterations: [7]},
-            'locrian': {pattern: this.majorPattern, alterations: [2, 3, 5, 6, 7]},
+    // Define scale types as alterations to the major scale
+    static scaleDefinitions = {
+        'all': {pattern: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], alterations: []},
+        'major': {pattern: this.majorPattern, alterations: []},
+        'minor': {pattern: this.majorPattern, alterations: [3, 6, 7]},
+        'dorian': {pattern: this.majorPattern, alterations: [3, 7]},
+        'phrygian': {pattern: this.majorPattern, alterations: [2, 3, 6, 7]},
+        'lydian': {pattern: this.majorPattern, alterations: [], sharpened: [4]},
+        'mixolydian': {pattern: this.majorPattern, alterations: [7]},
+        'locrian': {pattern: this.majorPattern, alterations: [2, 3, 5, 6, 7]},
 
-        };
-
-
-    }
+    };
 
     /**
      * Generates scale notes with proper degree notations
@@ -26,7 +23,7 @@ export class SaleNoteDegreeCalculator {
      * @param {string} scaleType - Type of scale
      * @return {Array} Array of note objects with note names and proper scale degrees
      */
-    getScaleNotes(rootNote, scaleType) {
+    static getScaleNotes(rootNote, scaleType) {
         const chromaticScale = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
 
         // Normalize the root note
@@ -72,7 +69,7 @@ export class SaleNoteDegreeCalculator {
         return scaleNotes;
     }
 
-    generateMajorScale(rootNote, chromaticScale) {
+    static generateMajorScale(rootNote, chromaticScale) {
         let keyIndex = chromaticScale.indexOf(rootNote);
         let majorScale = [rootNote];
 
@@ -86,17 +83,17 @@ export class SaleNoteDegreeCalculator {
         return majorScale;
     }
 
-    flattenNote(note, chromaticScale) {
+    static flattenNote(note, chromaticScale) {
         let index = chromaticScale.indexOf(note);
         return chromaticScale[(index - 1 + chromaticScale.length) % chromaticScale.length];
     }
 
-    sharpenNote(note, chromaticScale) {
+    static sharpenNote(note, chromaticScale) {
         let index = chromaticScale.indexOf(note);
         return chromaticScale[(index + 1) % chromaticScale.length];
     }
 
-    normalizeNoteName(inputNote) {
+    static normalizeNoteName(inputNote) {
         // Map of enharmonic equivalents to standardized notes in the chromatic scale
         const enharmonicMap = {
             'Cb': 'B',

@@ -1,4 +1,4 @@
-import {html} from "../../general/general-js/functions.js?v=0.0.0";
+import {html} from "../../general/general-js/functions.js?v=1743015445";
 
 /**
  * HTML code for user profile card

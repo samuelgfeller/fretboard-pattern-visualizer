@@ -1,4 +1,4 @@
-import {getUserCardSkeletonLoaderHtml} from "./user-list-card.html.js?v=0.0.0";
+import {getUserCardSkeletonLoaderHtml} from "./user-list-card.html.js?v=1743015445";
 
 /**
  * Display content placeholders
