@@ -10,8 +10,7 @@ export class ColorSettingsController {
 
         this.settingsVisible = false;
         this.loadSavedColors();
-        this.createSettingsButton();
-        this.createColorPickers();
+        this.setupEventListeners();
         this.applyColors();
     }
 
@@ -20,6 +19,14 @@ export class ColorSettingsController {
         const savedColors = localStorage.getItem('note-colors');
         if (savedColors) {
             this.colorSettings = {...this.colorSettings, ...JSON.parse(savedColors)};
+
+            // Update the color input values
+            for (const [key, value] of Object.entries(this.colorSettings)) {
+                const input = document.getElementById(`color-${key}`);
+                if (input) {
+                    input.value = value;
+                }
+            }
         }
     }
 
@@ -27,30 +34,28 @@ export class ColorSettingsController {
         localStorage.setItem('note-colors', JSON.stringify(this.colorSettings));
     }
 
-    createSettingsButton() {
-        // Create button in the settings form
-        const settingsForm = document.querySelector('#settings-form');
-        if (!settingsForm) return;
+    setupEventListeners() {
+        // Set up toggle button
+        const button = document.getElementById('color-settings-toggle');
+        if (button) {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.toggleSettingsPanel();
+            });
+        }
 
-        // Create button container
-        const buttonContainer = document.createElement('div');
-        buttonContainer.classList.add('form-input-div', 'color-settings-button-container');
-
-        // Create button
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.id = 'color-settings-toggle';
-        button.classList.add('color-settings-button');
-        button.innerHTML = '<span>🎨</span> Note Colors';
-
-        // Add click event
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.toggleSettingsPanel();
+        // Set up color input listeners
+        const colorTypes = ['default', 'major', 'minor', 'augmented', 'diminished'];
+        colorTypes.forEach(key => {
+            const input = document.getElementById(`color-${key}`);
+            if (input) {
+                input.addEventListener('change', (e) => {
+                    this.colorSettings[key] = e.target.value;
+                    this.applyColors();
+                    this.saveColors();
+                });
+            }
         });
-
-        buttonContainer.appendChild(button)
-        settingsForm.appendChild(buttonContainer);
     }
 
     toggleSettingsPanel() {
@@ -58,65 +63,13 @@ export class ColorSettingsController {
         if (!panel) return;
 
         this.settingsVisible = !this.settingsVisible;
-        panel.style.display = this.settingsVisible ? 'block' : 'none';
+        // Class active-panel is used to display the panel
+        panel.classList.toggle('active-panel');
 
         // Update button appearance
         const button = document.getElementById('color-settings-toggle');
         if (button) {
             button.classList.toggle('active', this.settingsVisible);
-        }
-    }
-
-    createColorPickers() {
-        // Create settings panel if it doesn't exist
-        let settingsPanel = document.getElementById('color-settings-panel');
-        if (!settingsPanel) {
-            settingsPanel = document.createElement('div');
-            settingsPanel.id = 'color-settings-panel';
-            settingsPanel.classList.add('color-settings');
-            settingsPanel.style.display = 'none'; // Hidden by default
-
-            const title = document.createElement('h4');
-            title.textContent = 'Note Color Settings';
-            settingsPanel.appendChild(title);
-
-            // Add after the settings form
-            document.querySelector('#color-settings-button-container').insertAdjacentElement('beforeend', settingsPanel);
-        }
-
-        // Clear existing pickers
-        settingsPanel.querySelectorAll('.color-picker-group').forEach(el => el.remove());
-
-        // Create color pickers for each note type
-        const labels = {
-            'default': 'Default',
-            'major': 'Major',
-            'minor': 'Minor',
-            'augmented': 'Augmented',
-            'diminished': 'Diminished'
-        };
-
-        for (const [key, label] of Object.entries(labels)) {
-            const group = document.createElement('div');
-            group.classList.add('color-picker-group');
-
-            const colorLabel = document.createElement('label');
-            colorLabel.textContent = label;
-            colorLabel.htmlFor = `color-${key}`;
-
-            const colorInput = document.createElement('input');
-            colorInput.type = 'color';
-            colorInput.id = `color-${key}`;
-            colorInput.value = this.colorSettings[key];
-            colorInput.addEventListener('change', (e) => {
-                this.colorSettings[key] = e.target.value;
-                this.applyColors();
-                this.saveColors();
-            });
-
-            group.appendChild(colorLabel);
-            group.appendChild(colorInput);
-            settingsPanel.appendChild(group);
         }
     }
 

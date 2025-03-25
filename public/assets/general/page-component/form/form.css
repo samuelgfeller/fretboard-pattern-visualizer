@@ -88,7 +88,7 @@
         /*color: darkgrey;*/
     }
 
-    .form-input-div input:not(input[type="radio"]), .form-input:not(input[type="radio"]),
+    .form-input-div input:not(input[type="radio"], input[type="color"]), .form-input:not(input[type="radio"], input[type="color"]),
     .form-input-div textarea, textarea.form-input, .form-input-div select, select.form-input {
         background-color: var(--form-input-background-color);
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.13);
@@ -103,6 +103,22 @@
         letter-spacing: 0.02em;
         position: relative;
         z-index: 1;
+    }
+
+    .color-picker-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.5rem;
+        cursor: pointer;
+    }
+
+    .color-picker-group input[type="color"] {
+        padding: 0;
+        border-radius: 20px;
+        background: none;
+        border: none;
     }
 
     .form-input-div input:not(input[type="radio"]):hover, .form-input:not(input[type="radio"]):hover,
@@ -140,7 +156,7 @@
         padding: 15px;
     }
 
-    .form-input-div input[type=submit], .submit-btn {
+    .form-input-div input[type=submit], .submit-btn, .form-btn {
         width: fit-content;
         min-width: 160px;
         float: right;

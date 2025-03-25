@@ -15,14 +15,14 @@ export class ModeManager {
     }
 
     initialize() {
-        // Set initial state (default to chord mode)
-        this.chordContainer.classList.add('active');
-        this.chordController.activate();
-
         // Restore from localStorage if available
         if (localStorage.getItem('current-mode') === 'scale') {
             this.modeToggle.checked = true;
             this.switchToScaleMode();
+        }
+        else {
+            this.switchToChordMode();
+
         }
 
         // Listen for mode changes
@@ -43,13 +43,23 @@ export class ModeManager {
         this.chordController.deactivate();
         this.scaleController.activate();
         localStorage.setItem('current-mode', 'scale');
+        // Move the color color-settings-button-container to the scale container
+        const colorSettingsButton = document.getElementById('color-settings-button-container');
+        if (colorSettingsButton) {
+            this.scaleContainer.appendChild(colorSettingsButton);
+        }
     }
 
     switchToChordMode() {
-        this.chordContainer.classList.add('active');
-        this.scaleContainer.classList.remove('active');
+        this.chordContainer.classList?.add('active');
+        this.scaleContainer.classList?.remove('active');
         this.scaleController.deactivate();
         this.chordController.activate();
         localStorage.setItem('current-mode', 'chord');
+        // Move the color color-settings-button-container to the chord container
+        const colorSettingsButton = document.getElementById('color-settings-button-container');
+        if (colorSettingsButton) {
+            this.chordContainer.appendChild(colorSettingsButton);
+        }
     }
 }

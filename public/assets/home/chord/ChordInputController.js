@@ -34,10 +34,10 @@ export class ChordInputController extends InputController {
     }
 
     detachEventListeners() {
-        this.keyInput.removeEventListener('input', this.handleInputChange);
-        this.scaleDegreeInput.removeEventListener('input', this.handleInputChange);
-        this.chordTypeSelect.removeEventListener('change', this.handleInputChange);
-        this.chordScaleTypeSelect.removeEventListener('change', this.handleInputChange);
+        this.keyInput?.removeEventListener('input', this.handleInputChange);
+        this.scaleDegreeInput?.removeEventListener('input', this.handleInputChange);
+        this.chordTypeSelect?.removeEventListener('change', this.handleInputChange);
+        this.chordScaleTypeSelect?.removeEventListener('change', this.handleInputChange);
     }
 
     handleInputChange() {

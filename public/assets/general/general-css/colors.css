@@ -7,7 +7,7 @@
 
     /*Background colors*/
     --background-color: #d0d0d0;
-    /*Accents darker than white background*/
+    /*Accents darker than bright background*/
     --background-accent-1-color: #c4c4c4;
     --background-accent-2-color: #b6b6b6;
     --background-accent-3-color: #989898;
@@ -16,7 +16,9 @@
     --modal-box-background: #dcdcdc;
 
     /*Border*/
-    --border-accent-2-color: #d5d5d5;
+    --border-accent-1-color: #c6c6c6;
+    --border-accent-2-color: #bfbebe;
+    --border-accent-3-color: #bfbfbf;
 
     /*Text*/
     --primary-text-color: #2e3e50;
@@ -69,7 +71,9 @@
     --accent-text-color-on-primary-color-background: whitesmoke;
 
     /*Border*/
-    --border-accent-2-color: #3c4143;
+    --border-accent-1-color: #3c4143;
+    --border-accent-2-color: #474d50;
+    --border-accent-3-color: #444;
 
     /*Filters*/
     /*Style the black svg icons to the primary color https://angel-rs.github.io/css-color-filter-generator*/

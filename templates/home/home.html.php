@@ -103,4 +103,39 @@ $this->addAttribute('jsModule', [
         </div>
     </div>
 
+    <!-- Color Settings Button -->
+    <div class="form-input-div" id="color-settings-button-container">
+        <label for="color-settings-toggle">Colors</label>
+        <button type="button" id="color-settings-toggle" class="color-settings-button form-btn">
+            <span>🎨</span> Settings
+        </button>
+
+        <!-- Color Settings Panel -->
+        <div id="color-settings-panel">
+            <div class="color-picker-group">
+                <label for="color-default">Default</label>
+                <input type="color" id="color-default" value="#a64dff">
+            </div>
+
+            <div class="color-picker-group">
+                <label for="color-major">Major</label>
+                <input type="color" id="color-major" value="#ee2929">
+            </div>
+
+            <div class="color-picker-group">
+                <label for="color-minor">Minor</label>
+                <input type="color" id="color-minor" value="#2e8bff">
+            </div>
+
+            <div class="color-picker-group">
+                <label for="color-augmented">Augmented</label>
+                <input type="color" id="color-augmented" value="#ff9d00">
+            </div>
+
+            <div class="color-picker-group">
+                <label for="color-diminished">Diminished</label>
+                <input type="color" id="color-diminished" value="#12c712">
+            </div>
+        </div>
+
 </form>

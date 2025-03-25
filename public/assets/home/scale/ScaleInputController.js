@@ -26,8 +26,8 @@ export class ScaleInputController extends InputController {
     }
 
     detachEventListeners() {
-        this.rootNoteInput.removeEventListener('input', this.handleInputChange);
-        this.scaleTypeSelect.removeEventListener('change', this.handleInputChange);
+        this.rootNoteInput?.removeEventListener('input', this.handleInputChange);
+        this.scaleTypeSelect?.removeEventListener('change', this.handleInputChange);
     }
 
     handleInputChange() {
