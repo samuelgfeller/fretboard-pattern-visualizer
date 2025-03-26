@@ -1,4 +1,4 @@
-import {loadUserList} from "./user-list-loading.js?v=1743015445";
+import {loadUserList} from "./user-list-loading.js?v=0.1.0";
 
 // Load user list at page load. In a separate file as it's used by user-create-main as well.
 loadUserList();

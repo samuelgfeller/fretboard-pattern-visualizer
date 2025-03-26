@@ -1,6 +1,6 @@
 // public/assets/home/controllers/InputController.js
 
-import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=1743015445";
+import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.1.0";
 
 export class InputController {
     constructor(patternVisualizer) {

@@ -1,10 +1,10 @@
-import {removeValidationErrorMessages} from "../../general/ajax/ajax-util/fail-handler.js?v=1743015445";
+import {removeValidationErrorMessages} from "../../general/ajax/ajax-util/fail-handler.js?v=0.1.0";
 import {
     contentEditableFieldValueIsValid,
     disableEditableField,
     makeFieldEditable
-} from "../../general/page-component/contenteditable/contenteditable-main.js?v=1743015445";
-import {submitUpdate} from "../../general/ajax/submit-update-data.js?v=1743015445";
+} from "../../general/page-component/contenteditable/contenteditable-main.js?v=0.1.0";
+import {submitUpdate} from "../../general/ajax/submit-update-data.js?v=0.1.0";
 
 /**
  * Make text value as editable and attach event listeners
