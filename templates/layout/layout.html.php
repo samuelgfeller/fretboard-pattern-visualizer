@@ -60,7 +60,7 @@
     <script>
         // Dark theme: https://samuel-gfeller.ch/docs/Dark-Theme
         // Add the theme immediately to the <html> element before everything else for the correct colors on load
-        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') ?? 'light');
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') ?? 'dark');
     </script>
 </head>
 <body>
