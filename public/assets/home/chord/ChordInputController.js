@@ -1,9 +1,9 @@
 // public/assets/home/controllers/ChordInputController.js
 
-import {InputController} from "../controller/InputController.js?v=0.1.0";
-import {ChordPositionGenerator} from "./ChordPositionGenerator.js?v=0.1.0";
-import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.1.0";
-import {ChordTonalityCalculator} from "../music-util/ChordTonalityCalculator.js?v=0.1.0";
+import {InputController} from "../controller/InputController.js?v=0.1.1";
+import {ChordPositionGenerator} from "./ChordPositionGenerator.js?v=0.1.1";
+import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.1.1";
+import {ChordTonalityCalculator} from "../music-util/ChordTonalityCalculator.js?v=0.1.1";
 
 export class ChordInputController extends InputController {
     constructor(patternVisualizer) {

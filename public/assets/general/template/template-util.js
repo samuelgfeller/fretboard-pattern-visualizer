@@ -1,4 +1,4 @@
-import {html} from "../general-js/functions.js?v=0.1.0";
+import {html} from "../general-js/functions.js?v=0.1.1";
 
 /**
  * @param {object} allEntries database key has to be object key and value is name

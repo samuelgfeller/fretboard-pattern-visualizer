@@ -1,5 +1,5 @@
-import {displayValidationErrorMessage} from "../../validation/form-validation.js?v=0.1.0";
-import {displayFlashMessage} from "../../page-component/flash-message/flash-message.js?v=0.1.0";
+import {displayValidationErrorMessage} from "../../validation/form-validation.js?v=0.1.1";
+import {displayFlashMessage} from "../../page-component/flash-message/flash-message.js?v=0.1.1";
 
 /**
  * This function can be called with the Response or a TypeError.

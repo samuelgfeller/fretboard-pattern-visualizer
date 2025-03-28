@@ -1,4 +1,4 @@
-import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.1.0";
+import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.1.1";
 
 export class PatternVisualizer {
 

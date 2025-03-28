@@ -1,5 +1,5 @@
-import {SaleNoteDegreeCalculator} from "./SaleNoteDegreeCalculator.js?v=0.1.0";
-import {MusicNoteUtils as NoteNameNormalizer} from "./NoteNameNormalizer.js?v=0.1.0";
+import {SaleNoteDegreeCalculator} from "./SaleNoteDegreeCalculator.js?v=0.1.1";
+import {MusicNoteUtils as NoteNameNormalizer} from "./NoteNameNormalizer.js?v=0.1.1";
 
 export class ChordTonalityCalculator {
     // Does not work with scales other than major / minor
