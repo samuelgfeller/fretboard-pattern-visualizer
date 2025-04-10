@@ -64,16 +64,18 @@ export class ChordInputController extends InputController {
             }
             // Check if chordTypeSelect is valid (not empty) before generating the chord
             if (this.chordTypeSelect.checkValidity()) {
+                let extraFrets = 3;
                 const notesOnStrings = new ChordPositionGenerator().getChordNotesOnStrings(
                     this.keyInput.value,
                     this.chordScaleTypeSelect.value,
                     this.scaleDegreeInput.value,
                     this.chordTypeSelect.value,
+                    extraFrets
                 );
 
-                this.patternVisualizer.displayPattern(notesOnStrings, this.chordTypeSelect.value);
+                this.patternVisualizer.displayPattern(notesOnStrings, this.chordTypeSelect.value, extraFrets);
             }
-        } else {
+        } else if (localStorage.getItem('chord-root-note-input') && localStorage.getItem('chord-scale-degree-input') && localStorage.getItem('chord-scale-type-select')) {
             this.settingsForm.reportValidity();
         }
     }

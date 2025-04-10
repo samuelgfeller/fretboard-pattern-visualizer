@@ -6,7 +6,7 @@ export class PatternVisualizer {
 
     }
 
-    displayPattern(notesOnStrings, scaleOrChordType) {
+    displayPattern(notesOnStrings, scaleOrChordType, extraFrets = 2) {
         document.getElementById('fretboard-container')?.remove();
 
         document.querySelector('#settings-form').insertAdjacentHTML('afterend', `
@@ -15,7 +15,7 @@ export class PatternVisualizer {
             </div>
         `);
 
-        this.addVirtualFretboardHtml(notesOnStrings, scaleOrChordType);
+        this.addVirtualFretboardHtml(notesOnStrings, scaleOrChordType, extraFrets);
     }
 
     static getSavedFretRange() {
@@ -23,18 +23,25 @@ export class PatternVisualizer {
         return localStorage.getItem(`note-in-key-fret-range-${fretboardNr}`);
     }
 
-    addVirtualFretboardHtml(notesOnStrings, scaleOrChordType) {
+    addVirtualFretboardHtml(notesOnStrings, scaleOrChordType, extraFrets) {
         const fretboard = document.querySelector(`#fretboard-for-pattern`);
         // Add chord type as a class for styling
         if (scaleOrChordType) {
             fretboard.classList.add(`type-${scaleOrChordType.toLowerCase().replace(/\s+/g, '-')}`);
         }
         // Create a deep copy of availableNotesOnStrings to prevent actually modifying the original object
-        const availableNotesOnStringsCopy = JSON.parse(JSON.stringify(availableNotesOnStrings));
+        let availableNotesOnStringsCopy = JSON.parse(JSON.stringify(availableNotesOnStrings));
+        // Add extra frets to the end of the string starting from the first note
+        for (const [stringName, notes   ] of Object.entries(availableNotesOnStringsCopy)) {
+            // Add extra frets to the end of the string starting from the first note
+            for (let i = 0; i < extraFrets; i++) {
+                notes.push(notes[i]);
+            }
+        }
 
         // Store the total number of frets on the string to place indicator helpers and scrollIntoView on mobile
         let totalFrets = availableNotesOnStringsCopy[Object.keys(availableNotesOnStringsCopy)[0]].length - 1;
-        fretboard.dataset.totalFrets = totalFrets.toString();
+        fretboard.dataset.totalFrets = (totalFrets).toString();
 
         let noteOnePositions = {};
 
@@ -68,8 +75,8 @@ export class PatternVisualizer {
             stringNameDiv.appendChild(stringNameSpan);
             string.appendChild(stringNameDiv);
 
-            // move the first element of the notes array to the end so it's the last one
-            notes.push(notes.shift());
+            // Remove the first element of the notes array as it's the string name
+            notes.shift();
 
             for (const index in notes) {
                 // Calculate the fret number where 1 is on the right

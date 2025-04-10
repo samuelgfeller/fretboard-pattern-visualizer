@@ -14,7 +14,7 @@ export class ChordPositionGenerator {
         };
     }
 
-    getChordNotesOnStrings(keyNote, scaleType, scaleDegree, chordType) {
+    getChordNotesOnStrings(keyNote, scaleType, scaleDegree, chordType, extraFrets = 2) {
         // 1. Generate the major scale to use as reference for scale degrees
         const majorScaleNotes = ScaleNoteDegreeCalculator.getScaleNotes(keyNote, 'major');
         const chromaticScale = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
@@ -59,13 +59,25 @@ export class ChordPositionGenerator {
         for (let string in availableNotesOnStrings) {
             chordNotesOnStrings[string] = [];
 
-            for (let i = 0; i < availableNotesOnStrings[string].length; i++) {
-                const note = availableNotesOnStrings[string][i];
+            for (let i = 0; i < availableNotesOnStrings[string].length + extraFrets; i++) {
+                let note;
+                // Consider extra frets
+                if (i < availableNotesOnStrings[string].length) {
+                    // Use notes from the available configuration
+                    note = availableNotesOnStrings[string][i];
+                } else {
+                    // Calculate notes for the extra frets
+                    const baseNote = availableNotesOnStrings[string][0]; // Open string note
+                    const baseIndex = chromaticScale.indexOf(NoteNameNormalizer.normalizeNoteName(baseNote));
+                    const extraIndex = (baseIndex + i) % 12;
+                    note = chromaticScale[extraIndex];
+                }
 
                 // Check if this note is in our chord
-                const isChordNote = actualChordNotes.some(chordNote =>
-                    chordNote.noteName === note
-                );
+            const isChordNote = actualChordNotes.some(chordNote =>
+                NoteNameNormalizer.normalizeNoteName(chordNote.noteName) ===
+                NoteNameNormalizer.normalizeNoteName(note)
+            );
 
                 if (isChordNote) {
                     const normalizedNote = NoteNameNormalizer.normalizeNoteName(note);
@@ -149,6 +161,7 @@ export class ChordPositionGenerator {
         }
 
         return chordNotesOnStrings;
+
     }
 
     getActualChordNotes(rootNote, chordTones, chromaticScale) {
