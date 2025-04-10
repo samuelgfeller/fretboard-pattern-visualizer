@@ -1,4 +1,5 @@
-import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.1.1";
+import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.2.0";
+import {FretboardImageExporter} from "./FretboardImageExporter.js?v=0.2.0";
 
 export class PatternVisualizer {
 
@@ -11,11 +12,34 @@ export class PatternVisualizer {
 
         document.querySelector('#settings-form').insertAdjacentHTML('afterend', `
             <div id="fretboard-container">
-                <div id="fretboard-for-pattern"></div>
+               <div id="fretboard-for-pattern"></div>
             </div>
+            <button type="button" id="download-fretboard-btn" class="color-settings-button form-btn">
+            <span>⬇️</span> Download image
+        </button>
         `);
 
         this.addVirtualFretboardHtml(notesOnStrings, scaleOrChordType, extraFrets);
+        this.attachDownloadButtonListener();
+
+    }
+
+    attachDownloadButtonListener() {
+        const downloadBtn = document.getElementById('download-fretboard-btn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                const container = document.getElementById('fretboard-container');
+
+                let keyInput = document.getElementById('chord-key-input').value;
+                let scaleDegreeInput = document.getElementById('chord-scale-degree-input').value;
+                let chordScaleTypeSelect = document.getElementById('chord-scale-type-select').value;
+                let chordTypeSelect = document.getElementById('chord-type-select').value;
+
+                let fileName = `Key-${keyInput}-Degree-${scaleDegreeInput}-Chord-${chordTypeSelect}-Scale-${chordScaleTypeSelect}.png`;
+
+                FretboardImageExporter.captureAndDownload(container, fileName);
+            });
+        }
     }
 
     static getSavedFretRange() {
@@ -32,7 +56,7 @@ export class PatternVisualizer {
         // Create a deep copy of availableNotesOnStrings to prevent actually modifying the original object
         let availableNotesOnStringsCopy = JSON.parse(JSON.stringify(availableNotesOnStrings));
         // Add extra frets to the end of the string starting from the first note
-        for (const [stringName, notes   ] of Object.entries(availableNotesOnStringsCopy)) {
+        for (const [stringName, notes] of Object.entries(availableNotesOnStringsCopy)) {
             // Add extra frets to the end of the string starting from the first note
             for (let i = 0; i < extraFrets; i++) {
                 notes.push(notes[i]);
@@ -119,7 +143,7 @@ export class PatternVisualizer {
             element.classList.add('root');
         }
 
-        if (noteObject.tonality){
+        if (noteObject.tonality) {
             element.classList.add(`${noteObject.tonality}`)
         }
     }

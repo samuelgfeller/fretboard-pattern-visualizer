@@ -1,8 +1,8 @@
 import {
     displayServerSideFlashMessages
-} from "../page-component/flash-message/flash-message.js?v=0.1.1";
-import {initAutoResizingTextareaElements} from "../page-component/textarea/auto-resizing-textarea.js?v=0.1.1";
-import {scrollToAnchor} from "../page-behaviour/scroll-to-anchor.js?v=0.1.1";
+} from "../page-component/flash-message/flash-message.js?v=0.2.0";
+import {initAutoResizingTextareaElements} from "../page-component/textarea/auto-resizing-textarea.js?v=0.2.0";
+import {scrollToAnchor} from "../page-behaviour/scroll-to-anchor.js?v=0.2.0";
 
 // displayFlashMessage('success', 'This is a success flash message.');
 // displayFlashMessage('info', 'This is an info flash message.');

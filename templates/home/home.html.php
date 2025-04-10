@@ -19,6 +19,9 @@ $this->addAttribute('css', [
 $this->addAttribute('jsModule', [
     'assets/home/app.js',
 ]);
+$this->addAttribute('js', [
+    'assets/lib/html2canvas.min.js',
+]);
 
 
 ?>

@@ -1,6 +1,6 @@
-import {ScalePositionGenerator as ScalePositionsGenerator} from "./ScalePositionGenerator.js?v=0.1.1";
-import {InputController} from "../controller/InputController.js?v=0.1.1";
-import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.1.1";
+import {ScalePositionGenerator as ScalePositionsGenerator} from "./ScalePositionGenerator.js?v=0.2.0";
+import {InputController} from "../controller/InputController.js?v=0.2.0";
+import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.2.0";
 
 export class ScaleInputController extends InputController {
     constructor(patternVisualizer) {

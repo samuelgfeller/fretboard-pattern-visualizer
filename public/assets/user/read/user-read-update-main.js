@@ -1,6 +1,6 @@
-import {makeUserFieldEditable} from "./user-update-contenteditable.js?v=0.1.1";
-import {submitDelete} from "../../general/ajax/submit-delete-request.js?v=0.1.1";
-import {createAlertModal} from "../../general/page-component/modal/alert-modal.js?v=0.1.1";
+import {makeUserFieldEditable} from "./user-update-contenteditable.js?v=0.2.0";
+import {submitDelete} from "../../general/ajax/submit-delete-request.js?v=0.2.0";
+import {createAlertModal} from "../../general/page-component/modal/alert-modal.js?v=0.2.0";
 
 
 const userId = document.getElementById('user-id').value;

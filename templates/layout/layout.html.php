@@ -10,6 +10,7 @@
  * @var string $currRouteName current route name
  * @var Psr\Http\Message\UriInterface $uri
  * @var array<string, mixed> $config 'public' configuration values
+ * @var string|null $version app version
  */
 
 ?>
@@ -22,7 +23,7 @@
     echo html($basePath); ?>/"/>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="favicon.ico?v=3" type="image/x-icon"/>
+    <link rel="shortcut icon" href="favicon.ico?v=<?= $version ?>" type="image/x-icon"/>
 
     <?php
     // Define layout assets
