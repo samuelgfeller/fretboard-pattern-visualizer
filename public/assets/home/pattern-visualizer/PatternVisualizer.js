@@ -1,5 +1,5 @@
-import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.2.0";
-import {FretboardImageExporter} from "./FretboardImageExporter.js?v=0.2.0";
+import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.2.1";
+import {FretboardImageExporter} from "./FretboardImageExporter.js?v=0.2.1";
 
 export class PatternVisualizer {
 
@@ -9,14 +9,15 @@ export class PatternVisualizer {
 
     displayPattern(notesOnStrings, scaleOrChordType, extraFrets = 2) {
         document.getElementById('fretboard-container')?.remove();
+        document.getElementById('download-fretboard-btn')?.remove();
 
         document.querySelector('#settings-form').insertAdjacentHTML('afterend', `
             <div id="fretboard-container">
                <div id="fretboard-for-pattern"></div>
             </div>
             <button type="button" id="download-fretboard-btn" class="color-settings-button form-btn">
-            <span>⬇️</span> Download image
-        </button>
+                <span>⬇️</span> Download image
+            </button>
         `);
 
         this.addVirtualFretboardHtml(notesOnStrings, scaleOrChordType, extraFrets);
