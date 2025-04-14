@@ -56,7 +56,7 @@ export class ScaleInputController extends InputController {
             }
 
             this.patternVisualizer.displayPattern(notesOnStrings, this.scaleTypeSelect.value);
-        } else {
+        } else if (localStorage.getItem('scale-type-select')) {
             this.settingsForm.reportValidity();
         }
     }
