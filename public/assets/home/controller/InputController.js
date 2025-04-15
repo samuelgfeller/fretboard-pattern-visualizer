@@ -20,6 +20,7 @@ export class InputController {
         this.isActive = false;
         this.detachEventListeners();
         document.getElementById('fretboard-container')?.remove();
+        document.getElementById('download-fretboard-btn')?.remove();
     }
 
     // Abstract methods to be implemented by subclasses
