@@ -1,5 +1,5 @@
-import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.2.1";
-import {FretboardImageExporter} from "./FretboardImageExporter.js?v=0.2.1";
+import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.2.2";
+import {FretboardImageExporter} from "./FretboardImageExporter.js?v=0.2.2";
 
 export class PatternVisualizer {
 

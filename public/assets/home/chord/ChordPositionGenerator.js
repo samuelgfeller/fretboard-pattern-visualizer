@@ -1,6 +1,6 @@
-import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.2.1";
-import {MusicNoteUtils as NoteNameNormalizer} from "../music-util/NoteNameNormalizer.js?v=0.2.1";
-import {SaleNoteDegreeCalculator as ScaleNoteDegreeCalculator} from "../music-util/SaleNoteDegreeCalculator.js?v=0.2.1";
+import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.2.2";
+import {MusicNoteUtils as NoteNameNormalizer} from "../music-util/NoteNameNormalizer.js?v=0.2.2";
+import {SaleNoteDegreeCalculator as ScaleNoteDegreeCalculator} from "../music-util/SaleNoteDegreeCalculator.js?v=0.2.2";
 
 export class ChordPositionGenerator {
     constructor() {

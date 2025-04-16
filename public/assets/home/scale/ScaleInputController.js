@@ -1,6 +1,6 @@
-import {ScalePositionGenerator as ScalePositionsGenerator} from "./ScalePositionGenerator.js?v=0.2.1";
-import {InputController} from "../controller/InputController.js?v=0.2.1";
-import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.2.1";
+import {ScalePositionGenerator as ScalePositionsGenerator} from "./ScalePositionGenerator.js?v=0.2.2";
+import {InputController} from "../controller/InputController.js?v=0.2.2";
+import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.2.2";
 
 export class ScaleInputController extends InputController {
     constructor(patternVisualizer) {
@@ -33,6 +33,8 @@ export class ScaleInputController extends InputController {
 
     handleInputChange() {
         if (this.isActive) {
+            // Replace the root note input with the upper case version of the note
+            this.rootNoteInput.value = this.rootNoteInput.value.toUpperCase();
             localStorage.setItem('scale-root-note-input', this.rootNoteInput.value);
             localStorage.setItem('scale-type-select', this.scaleTypeSelect.value);
             this.displayScalePattern();

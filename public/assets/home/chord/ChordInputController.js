@@ -1,9 +1,9 @@
 // public/assets/home/controllers/ChordInputController.js
 
-import {InputController} from "../controller/InputController.js?v=0.2.1";
-import {ChordPositionGenerator} from "./ChordPositionGenerator.js?v=0.2.1";
-import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.2.1";
-import {ChordTonalityCalculator} from "../music-util/ChordTonalityCalculator.js?v=0.2.1";
+import {InputController} from "../controller/InputController.js?v=0.2.2";
+import {ChordPositionGenerator} from "./ChordPositionGenerator.js?v=0.2.2";
+import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.2.2";
+import {ChordTonalityCalculator} from "../music-util/ChordTonalityCalculator.js?v=0.2.2";
 
 export class ChordInputController extends InputController {
     constructor(patternVisualizer) {
@@ -44,6 +44,8 @@ export class ChordInputController extends InputController {
 
     handleInputChange(event) {
         if (this.isActive) {
+            // Replace the note input with the upper case version of the note
+            this.keyInput.value = this.keyInput.value.toUpperCase();
             localStorage.setItem('chord-root-note-input', this.keyInput.value);
             localStorage.setItem('chord-scale-degree-input', this.scaleDegreeInput.value);
             localStorage.setItem('chord-type-select', this.chordTypeSelect.value);
