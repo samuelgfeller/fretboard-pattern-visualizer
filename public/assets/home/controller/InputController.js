@@ -1,6 +1,7 @@
 // public/assets/home/controllers/InputController.js
 
-import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.2.2";
+import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.2.3";
+import {PatternVisualizer} from "../pattern-visualizer/PatternVisualizer.js?v=0.2.3";
 
 export class InputController {
     constructor(patternVisualizer) {
@@ -19,8 +20,7 @@ export class InputController {
     deactivate() {
         this.isActive = false;
         this.detachEventListeners();
-        document.getElementById('fretboard-container')?.remove();
-        document.getElementById('download-fretboard-btn')?.remove();
+        PatternVisualizer.clearFretboardHtml();
     }
 
     // Abstract methods to be implemented by subclasses

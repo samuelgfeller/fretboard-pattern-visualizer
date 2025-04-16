@@ -1,5 +1,5 @@
-import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.2.2";
-import {FretboardImageExporter} from "./FretboardImageExporter.js?v=0.2.2";
+import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.2.3";
+import {FretboardImageExporter} from "./FretboardImageExporter.js?v=0.2.3";
 
 export class PatternVisualizer {
 
@@ -8,9 +8,7 @@ export class PatternVisualizer {
     }
 
     displayPattern(notesOnStrings, scaleOrChordType, extraFrets = 2) {
-        document.getElementById('fretboard-container')?.remove();
-        document.getElementById('download-fretboard-btn')?.remove();
-
+        PatternVisualizer.clearFretboardHtml();
         document.querySelector('#settings-form').insertAdjacentHTML('afterend', `
             <div id="fretboard-container">
                <div id="fretboard-for-pattern"></div>
@@ -149,12 +147,8 @@ export class PatternVisualizer {
         }
     }
 
-    static saveFretRangeInLocalStorage(lowerLimit, upperLimit) {
-        const fretboardNr = document.querySelector(`.fretboard-for-patterns:not(.inactive-fretboard)`).dataset.fretboardNr;
-        localStorage.setItem(`note-in-key-fret-range-${fretboardNr}`, JSON.stringify({
-            lowerLimit: lowerLimit,
-            upperLimit: upperLimit
-        }));
+    static clearFretboardHtml() {
+        document.getElementById('fretboard-container')?.remove();
+        document.getElementById('download-fretboard-btn')?.remove();
     }
-
 }

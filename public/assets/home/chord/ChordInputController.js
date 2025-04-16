@@ -1,9 +1,10 @@
 // public/assets/home/controllers/ChordInputController.js
 
-import {InputController} from "../controller/InputController.js?v=0.2.2";
-import {ChordPositionGenerator} from "./ChordPositionGenerator.js?v=0.2.2";
-import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.2.2";
-import {ChordTonalityCalculator} from "../music-util/ChordTonalityCalculator.js?v=0.2.2";
+import {InputController} from "../controller/InputController.js?v=0.2.3";
+import {ChordPositionGenerator} from "./ChordPositionGenerator.js?v=0.2.3";
+import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.2.3";
+import {ChordTonalityCalculator} from "../music-util/ChordTonalityCalculator.js?v=0.2.3";
+import {PatternVisualizer} from "../pattern-visualizer/PatternVisualizer.js?v=0.2.3";
 
 export class ChordInputController extends InputController {
     constructor(patternVisualizer) {
@@ -55,6 +56,7 @@ export class ChordInputController extends InputController {
         }
     }
 
+
     displayChordPattern(event = null) {
         // this.settingsForm.checkValidity() cannot be used as it needs to have valid name attributes
         if (this.keyInput.checkValidity() && this.scaleDegreeInput.checkValidity() && this.chordScaleTypeSelect.checkValidity()) {
@@ -62,7 +64,13 @@ export class ChordInputController extends InputController {
             if (event === null || event.target !== this.chordTypeSelect) {
                 // Is tested only for major and minor scales, other scales might not work
                 const chordTonalities = ChordTonalityCalculator.getChordTonalitiesForScale(this.chordScaleTypeSelect.value);
-                this.chordTypeSelect.value = chordTonalities[this.scaleDegreeInput.value.replace('#', '♯').replace('b', '♭',)];
+                const chordType = chordTonalities[this.scaleDegreeInput.value.replace('#', '♯').replace('b', '♭',)] ?? '';
+                this.chordTypeSelect.value = chordType;
+                localStorage.setItem('chord-type-select', chordType);
+                // If chordTonalities does not contain an element with the key this.scaleDegreeInput, report validity on chord type select
+                if (chordType === '') {
+                    this.chordTypeSelect.reportValidity();
+                }
             }
             // Check if chordTypeSelect is valid (not empty) before generating the chord
             if (this.chordTypeSelect.checkValidity()) {
@@ -78,7 +86,9 @@ export class ChordInputController extends InputController {
                 this.patternVisualizer.displayPattern(notesOnStrings, this.chordTypeSelect.value, extraFrets);
             }
         } else if (localStorage.getItem('chord-root-note-input') && localStorage.getItem('chord-scale-degree-input') && localStorage.getItem('chord-scale-type-select')) {
+            console.log('Invalid input');
             this.settingsForm.reportValidity();
+            PatternVisualizer.clearFretboardHtml();
         }
     }
 }
