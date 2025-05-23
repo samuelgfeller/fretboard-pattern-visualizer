@@ -1,15 +1,32 @@
 import {ScalePositionGenerator as ScalePositionsGenerator} from "./ScalePositionGenerator.js?v=0.2.3";
-import {InputController} from "../controller/InputController.js?v=0.2.3";
+import {SettingsController} from "../controller/SettingsController.js?v=0.2.3";
 import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.2.3";
+import {getMainScaleSettingsHtml} from "./ScaleHtmlElements.html.js?v=0.2.3";
+import {getColorSettingsButtonHtml, getThemeAndModeSettingsHtml} from "../shared-html/SharedHtmlElements.html.js?v=0.2.3";
 
-export class ScaleInputController extends InputController {
+export class ScaleSettingsController extends SettingsController {
     constructor(patternVisualizer) {
         super(patternVisualizer);
 
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    addSettingsHtmlElements() {
+        let html = `
+            <div id="scale-mode-container" class="mode-container">
+                ${getMainScaleSettingsHtml()}
+                ${getColorSettingsButtonHtml()}
+                ${getThemeAndModeSettingsHtml()}
+            </div>`;
+        document.getElementById('settings-form').insertAdjacentHTML('afterbegin', html);
+
+        // Populate class variables after adding the html elements to the DOM
         this.rootNoteInput = document.getElementById('scale-root-note-input');
         this.scaleTypeSelect = document.getElementById('scale-type-select');
+    }
 
-        this.handleInputChange = this.handleInputChange.bind(this);
+    removeSettingsHtmlElements() {
+        document.getElementById('scale-mode-container')?.remove();
     }
 
     loadLocalStorageValues() {

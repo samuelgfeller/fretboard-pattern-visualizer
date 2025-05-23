@@ -29,7 +29,7 @@ export class ScalePositionGenerator {
                         number: scaleNotes[noteIndex].number,
                         fretPosition: i,
                         isRoot: (noteIndex === 0), // First note in scale array is the root
-                        tonality: chordTonalities[degreeNumber]
+                        tonality: chordTonalities.get(degreeNumber)
                     });
                 }
             }

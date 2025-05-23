@@ -2,8 +2,9 @@
 
 import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.2.3";
 import {PatternVisualizer} from "../pattern-visualizer/PatternVisualizer.js?v=0.2.3";
+import {getColorSettingsButtonHtml, getThemeAndModeSettingsHtml} from "../shared-html/SharedHtmlElements.html.js?v=0.2.3";
 
-export class InputController {
+export class SettingsController {
     constructor(patternVisualizer) {
         this.patternVisualizer = patternVisualizer;
         this.isActive = false;
@@ -12,6 +13,7 @@ export class InputController {
 
     activate() {
         this.isActive = true;
+        this.addSettingsHtmlElements();
         this.attachEventListeners();
         this.loadLocalStorageValues();
         ColorSettingsController.updateTextColors();
@@ -20,10 +22,11 @@ export class InputController {
     deactivate() {
         this.isActive = false;
         this.detachEventListeners();
+        this.removeSettingsHtmlElements();
         PatternVisualizer.clearFretboardHtml();
     }
 
-    // Abstract methods to be implemented by subclasses
+    // !Abstract methods to be implemented by subclasses
     attachEventListeners() {
     }
 
@@ -31,5 +34,11 @@ export class InputController {
     }
 
     loadLocalStorageValues() {
+    }
+
+    addSettingsHtmlElements() {
+    }
+
+    removeSettingsHtmlElements() {
     }
 }

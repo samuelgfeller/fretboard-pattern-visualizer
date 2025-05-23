@@ -134,7 +134,7 @@ export class ColorSettingsController {
         return (299 * r + 587 * g + 114 * b) / 1000;
     }
 
-    // Apply to highlighted notes
+    // Dynamic change of black or white text color depending on chosen background
     static updateTextColors() {
         const notes = document.querySelectorAll('.highlighted-note-number');
 

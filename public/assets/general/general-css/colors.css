@@ -87,7 +87,7 @@
 
     /*Filters*/
     /*Style the black svg icons to the primary color https://angel-rs.github.io/css-color-filter-generator*/
-    --primary-color-filter: brightness(0) saturate(100%) invert(68%) sepia(3%) saturate(260%) hue-rotate(155deg) brightness(98%) contrast(91%);
+    --primary-color-filter: brightness(0) saturate(100%) invert(72%) sepia(0%) saturate(1%) hue-rotate(321deg) brightness(85%) contrast(88%);
     --accent-color-filter: brightness(0) saturate(100%) invert(54%) sepia(78%) saturate(312%) hue-rotate(46deg) brightness(65%) contrast(89%);
     --accent-darker-color-filter: brightness(0) saturate(100%) invert(54%) sepia(78%) saturate(312%) hue-rotate(46deg) brightness(65%) contrast(89%);
     --icon-filter-dark-background: var(--primary-color-filter);

@@ -17,7 +17,8 @@ export class ChordTonalityCalculator {
         };
 
         // Calculate chord quality for each scale degree
-        const tonalities = {};
+        // Use a Map to preserve insertion order
+        const tonalities = new Map();
 
         for (let i = 0; i < noteNames.length; i++) {
             const rootIndex = i;
@@ -53,7 +54,7 @@ export class ChordTonalityCalculator {
             }
 
             // Use the scale degree symbol instead of numeric index
-            tonalities[scaleNotes[i].number] = quality;
+            tonalities.set((scaleNotes[i].number).toString(), quality);
         }
 
         return tonalities;

@@ -47,7 +47,6 @@
     transition: .4s;
     top: 50%; /* Center vertically */
     transform: translateY(-50%); /* Center vertically */
-
 }
 
 /*input:checked + .slider {*/
