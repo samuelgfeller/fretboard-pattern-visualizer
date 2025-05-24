@@ -1,12 +1,12 @@
-import {ModeManager} from "./controller/ModeManager.js?v=0.2.3";
-import {ChordPositionGenerator} from "./chord/ChordPositionGenerator.js?v=0.2.3";
-import {PatternVisualizer} from "./pattern-visualizer/PatternVisualizer.js?v=0.2.3";
-import {ColorSettingsController} from "./pattern-visualizer/ColorSettingController.js?v=0.2.3";
+import {ModeManager} from "./controller/ModeManager.js?v=0.3.0";
+import {ChordPositionGenerator} from "./chord/ChordPositionGenerator.js?v=0.3.0";
+import {PatternVisualizer} from "./pattern-visualizer/PatternVisualizer.js?v=0.3.0";
+import {ColorSettingsController} from "./pattern-visualizer/ColorSettingController.js?v=0.3.0";
 import {
     getColorSettingsButtonHtml,
     getThemeAndModeSettingsHtml
-} from "./shared-html/SharedHtmlElements.html.js?v=0.2.3";
-import {initDarkModeToggle} from "../general/dark-mode/dark-mode.js?v=0.2.3";
+} from "./shared-html/SharedHtmlElements.html.js?v=0.3.0";
+import {initDarkModeToggle} from "../general/dark-mode/dark-mode.js?v=0.3.0";
 
 // When dom loaded
 

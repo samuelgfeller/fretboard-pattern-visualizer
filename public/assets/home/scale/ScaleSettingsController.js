@@ -1,8 +1,8 @@
-import {ScalePositionGenerator as ScalePositionsGenerator} from "./ScalePositionGenerator.js?v=0.2.3";
-import {SettingsController} from "../controller/SettingsController.js?v=0.2.3";
-import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.2.3";
-import {getMainScaleSettingsHtml} from "./ScaleHtmlElements.html.js?v=0.2.3";
-import {getColorSettingsButtonHtml, getThemeAndModeSettingsHtml} from "../shared-html/SharedHtmlElements.html.js?v=0.2.3";
+import {ScalePositionGenerator as ScalePositionsGenerator} from "./ScalePositionGenerator.js?v=0.3.0";
+import {SettingsController} from "../controller/SettingsController.js?v=0.3.0";
+import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.3.0";
+import {getMainScaleSettingsHtml} from "./ScaleHtmlElements.html.js?v=0.3.0";
+import {getColorSettingsButtonHtml, getThemeAndModeSettingsHtml} from "../shared-html/SharedHtmlElements.html.js?v=0.3.0";
 
 export class ScaleSettingsController extends SettingsController {
     constructor(patternVisualizer) {

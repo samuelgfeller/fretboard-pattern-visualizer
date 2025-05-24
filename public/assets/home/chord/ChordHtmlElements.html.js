@@ -1,4 +1,4 @@
-import {getColorSettingsButtonHtml, getThemeAndModeSettingsHtml} from "../shared-html/SharedHtmlElements.html.js?v=0.2.3";
+import {getColorSettingsButtonHtml, getThemeAndModeSettingsHtml} from "../shared-html/SharedHtmlElements.html.js?v=0.3.0";
 
 export function getMainChordSettingsHtml() {
     return `

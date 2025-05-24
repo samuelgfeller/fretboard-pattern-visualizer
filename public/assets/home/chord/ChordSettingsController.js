@@ -1,14 +1,14 @@
 // public/assets/home/controllers/ChordInputController.js
 
-import {SettingsController} from "../controller/SettingsController.js?v=0.2.3";
-import {ChordPositionGenerator} from "./ChordPositionGenerator.js?v=0.2.3";
-import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.2.3";
-import {ChordTonalityCalculator} from "../music-util/ChordTonalityCalculator.js?v=0.2.3";
-import {PatternVisualizer} from "../pattern-visualizer/PatternVisualizer.js?v=0.2.3";
+import {SettingsController} from "../controller/SettingsController.js?v=0.3.0";
+import {ChordPositionGenerator} from "./ChordPositionGenerator.js?v=0.3.0";
+import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.3.0";
+import {ChordTonalityCalculator} from "../music-util/ChordTonalityCalculator.js?v=0.3.0";
+import {PatternVisualizer} from "../pattern-visualizer/PatternVisualizer.js?v=0.3.0";
 import {
     getChordTonalitySettingsHtml,
     getMainChordSettingsHtml
-} from "./ChordHtmlElements.html.js?v=0.2.3";
+} from "./ChordHtmlElements.html.js?v=0.3.0";
 
 export class ChordSettingsController extends SettingsController {
     constructor(patternVisualizer) {

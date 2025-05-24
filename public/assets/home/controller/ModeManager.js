@@ -1,6 +1,6 @@
 // public/assets/home/controllers/ModeManager.js
-import {ChordSettingsController} from "../chord/ChordSettingsController.js?v=0.2.3";
-import {ScaleSettingsController} from "../scale/ScaleSettingsController.js?v=0.2.3";
+import {ChordSettingsController} from "../chord/ChordSettingsController.js?v=0.3.0";
+import {ScaleSettingsController} from "../scale/ScaleSettingsController.js?v=0.3.0";
 
 export class ModeManager {
     constructor(patternVisualizer, positionsGenerator) {

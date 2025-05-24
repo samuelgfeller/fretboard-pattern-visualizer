@@ -1,7 +1,7 @@
-import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.2.3";
-import {MusicNoteUtils as NoteNameNormalizer} from "../music-util/NoteNameNormalizer.js?v=0.2.3";
-import {SaleNoteDegreeCalculator} from "../music-util/SaleNoteDegreeCalculator.js?v=0.2.3";
-import {ChordTonalityCalculator} from "../music-util/ChordTonalityCalculator.js?v=0.2.3";
+import {availableNotesOnStrings} from "../../general/general-js/config.js?v=0.3.0";
+import {MusicNoteUtils as NoteNameNormalizer} from "../music-util/NoteNameNormalizer.js?v=0.3.0";
+import {SaleNoteDegreeCalculator} from "../music-util/SaleNoteDegreeCalculator.js?v=0.3.0";
+import {ChordTonalityCalculator} from "../music-util/ChordTonalityCalculator.js?v=0.3.0";
 
 export class ScalePositionGenerator {
 
