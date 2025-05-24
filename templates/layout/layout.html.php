@@ -38,7 +38,7 @@
     ];
     $layoutJs = [
         // 'assets/navbar/navbar.js',
-        'assets/general/dark-mode/dark-mode.js'
+        // 'assets/general/dark-mode/dark-mode.js'
     ];
     $layoutJsModules = ['assets/general/general-js/default.js'];
 

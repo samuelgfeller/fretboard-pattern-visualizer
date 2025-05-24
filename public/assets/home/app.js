@@ -6,6 +6,7 @@ import {
     getColorSettingsButtonHtml,
     getThemeAndModeSettingsHtml
 } from "./shared-html/SharedHtmlElements.html.js?v=0.2.3";
+import {initDarkModeToggle} from "../general/dark-mode/dark-mode.js?v=0.2.3";
 
 // When dom loaded
 
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const colorSettings = new ColorSettingsController();
     modeManager.initialize();
+    initDarkModeToggle();
 
 
     // ! Deprecated code below

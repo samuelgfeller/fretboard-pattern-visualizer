@@ -13,10 +13,8 @@ export class ScaleSettingsController extends SettingsController {
 
     addSettingsHtmlElements() {
         let html = `
-            <div id="scale-mode-container" class="mode-container">
+            <div id="scale-main-settings-container" class="main-settings-container">
                 ${getMainScaleSettingsHtml()}
-                ${getColorSettingsButtonHtml()}
-                ${getThemeAndModeSettingsHtml()}
             </div>`;
         document.getElementById('settings-form').insertAdjacentHTML('afterbegin', html);
 
@@ -26,7 +24,7 @@ export class ScaleSettingsController extends SettingsController {
     }
 
     removeSettingsHtmlElements() {
-        document.getElementById('scale-mode-container')?.remove();
+        document.getElementById('scale-main-settings-container')?.remove();
     }
 
     loadLocalStorageValues() {
