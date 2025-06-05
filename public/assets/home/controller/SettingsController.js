@@ -1,8 +1,8 @@
 // public/assets/home/controllers/InputController.js
 
-import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.3.0";
-import {PatternVisualizer} from "../pattern-visualizer/PatternVisualizer.js?v=0.3.0";
-import {getColorSettingsButtonHtml, getThemeAndModeSettingsHtml} from "../shared-html/SharedHtmlElements.html.js?v=0.3.0";
+import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.3.1";
+import {PatternVisualizer} from "../pattern-visualizer/PatternVisualizer.js?v=0.3.1";
+import {getColorSettingsButtonHtml, getThemeAndModeSettingsHtml} from "../shared-html/SharedHtmlElements.html.js?v=0.3.1";
 
 export class SettingsController {
     constructor(patternVisualizer) {

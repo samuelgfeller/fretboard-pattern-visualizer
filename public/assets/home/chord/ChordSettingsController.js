@@ -1,14 +1,14 @@
 // public/assets/home/controllers/ChordInputController.js
 
-import {SettingsController} from "../controller/SettingsController.js?v=0.3.0";
-import {ChordPositionGenerator} from "./ChordPositionGenerator.js?v=0.3.0";
-import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.3.0";
-import {ChordTonalityCalculator} from "../music-util/ChordTonalityCalculator.js?v=0.3.0";
-import {PatternVisualizer} from "../pattern-visualizer/PatternVisualizer.js?v=0.3.0";
+import {SettingsController} from "../controller/SettingsController.js?v=0.3.1";
+import {ChordPositionGenerator} from "./ChordPositionGenerator.js?v=0.3.1";
+import {ColorSettingsController} from "../pattern-visualizer/ColorSettingController.js?v=0.3.1";
+import {ChordTonalityCalculator} from "../music-util/ChordTonalityCalculator.js?v=0.3.1";
+import {PatternVisualizer} from "../pattern-visualizer/PatternVisualizer.js?v=0.3.1";
 import {
     getChordTonalitySettingsHtml,
     getMainChordSettingsHtml
-} from "./ChordHtmlElements.html.js?v=0.3.0";
+} from "./ChordHtmlElements.html.js?v=0.3.1";
 
 export class ChordSettingsController extends SettingsController {
     constructor(patternVisualizer) {
@@ -125,9 +125,16 @@ export class ChordSettingsController extends SettingsController {
             localStorage.setItem('chord-type-select', this.chordTypeSelect.value);
             localStorage.setItem('chord-scale-type-select', this.chordScaleTypeSelect.value);
             if (event.target === this.scaleDegreeInput) {
+                this.removeSelectedScaleDegree();
+                // Check if scale degree input is valid
+                if (!this.scaleDegreeInput.checkValidity()) {
+                    this.scaleDegreeInput.reportValidity();
+                    return;
+                }
                 localStorage.setItem('chord-scale-degree', this.scaleDegreeInput.value);
                 this.selectedChordScaleDegree = this.scaleDegreeInput.value;
-                this.removeSelectedScaleDegree();
+
+
             }
 
             if (event.target === this.chordScaleTypeSelect) {
@@ -184,6 +191,7 @@ export class ChordSettingsController extends SettingsController {
                 localStorage.setItem('chord-type-select', this.diatonicChordTonalityOfSelectedScaleDegree);
                 // If chordTonalities does not contain an element with the key this.scaleDegreeInput, report validity on chord type select
                 if (this.diatonicChordTonalityOfSelectedScaleDegree === '') {
+                    document.getElementById('collapsible-settings-container').classList.add('expanded');
                     this.chordTypeSelect.reportValidity();
                 }
             }
